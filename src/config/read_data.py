@@ -1,6 +1,4 @@
-from src.config.data_cfg import input_file, delim
-from src.config.ref_data import *
-import os
+from src.config.data_cfg import inputSCH, inputSCS, delim
 import re
 import csv
 import pandas as pd
@@ -15,7 +13,7 @@ logger = log.logger
 # files = os.listdir(cwd)  # Get all the files in that directory
 # print("Files in %r: %s" % (cwd, files))
 
-def get_data_from_log(path=input_file):
+def get_data_from_log(path):
     '''gets the data from log files in pandas dataframe, doesnt always work'''
 
     data_df = pd.DataFrame()
@@ -27,7 +25,7 @@ def get_data_from_log(path=input_file):
         print(a," ",type(a))
     return data_df
 
-def fetchTicks(instId: int, file=input_file):
+def fetchTicks(instId: int, file):
     '''
     Read data row by row using raw reading.
     '''
