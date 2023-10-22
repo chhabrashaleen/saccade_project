@@ -15,7 +15,7 @@ class TbtProcessor:
     callMod = {}
     callTrd = {}
     '''Sleeping for 1ms between each tick reading'''
-    _sleepTimeMs = 1
+    _sleepTimeMs = 5
 
     def __init__(self, ic: InstrumentContainer, isLiveMode=False):
         self._ic = ic

@@ -78,7 +78,7 @@ class Exchange:
         confirmNew = self.createConfirmNew(obs, orderState)
         logger.info("Exchange:%s prepared ConfirmNew:%s", self._tdb.instrumentId, confirmNew)
 
-        time.sleep(1 / 1000)
+        time.sleep(5 / 1000)
         self.sendDataPack(confirmNew)
 
         gotFill = False

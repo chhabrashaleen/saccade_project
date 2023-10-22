@@ -1,8 +1,6 @@
 # definitions of different ways to read the data
 import os
 
-from src.constants import *
-
 WIN_PATH = r"E:\git\saccade_project\mktdata\\"
 
 '''
