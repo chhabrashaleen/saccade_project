@@ -38,8 +38,8 @@ class TickPrintOrderbook(object):
 
     _bookArrayMinPrice = sys.maxsize        # Assuming the circuit limit to be at 10%
     _bookArrayMaxPrice = -sys.maxsize       # Assuming the circuit limit to be at 10%
-    _bookBids: list[int]
-    _bookAsks: list[int]
+    _bookBids = None
+    _bookAsks = None
     _bookDataCount: int
 
     _lastTradedPrice: Decimal

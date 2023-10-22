@@ -1,4 +1,4 @@
-from src.config.data_cfg import *
+from src.config.data_cfg import input_file, delim
 from src.config.ref_data import *
 import os
 import re

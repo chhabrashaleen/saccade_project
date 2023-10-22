@@ -12,7 +12,7 @@ class TbtProcessor:
     _hasGoneLive = False
     _hasFinished = False
 
-    def __init__(self, idx=1, isLiveMode=False):
+    def __init__(self, idx, isLiveMode=False):
         self._instrumentId = idx
         self._isLiveMode = isLiveMode
         self.callNew = None
