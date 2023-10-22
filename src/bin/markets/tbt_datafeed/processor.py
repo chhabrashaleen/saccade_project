@@ -1,27 +1,34 @@
 import src.config.logger as log
 from src.bin.markets.tbt_datafeed.messages import *
 logger = log.logger
-
+import time
 
 class TbtProcessor:
     _ic: InstrumentContainer
-    _instrumentId: int
     _feedIsUp = False
     _isLiveMode = False
     _hasStarted = False
     _hasGoneLive = False
     _hasFinished = False
+    callNew = {}
+    callCan = {}
+    callMod = {}
+    callTrd = {}
+    '''Sleeping for 1ms between each tick reading'''
+    _sleepTimeMs = 1
 
-    def __init__(self, idx, isLiveMode=False):
-        self._instrumentId = idx
+    def __init__(self, ic: InstrumentContainer, isLiveMode=False):
+        self._ic = ic
         self._isLiveMode = isLiveMode
-        self.callNew = None
-        self.callCan = None
-        self.callMod = None
-        self.callTrd = None
 
-    def getInstrumentId(self):
-        return self._instrumentId
+        for idx in self._ic.keys():
+            self.callNew[idx] = None
+            self.callCan[idx] = None
+            self.callMod[idx] = None
+            self.callTrd[idx] = None
+
+    def getInstrumentContainer(self):
+        return self._ic
 
     def readEvent(self, tick: TickRead):
         '''
@@ -31,15 +38,16 @@ class TbtProcessor:
             # logger.warn("###IGNORE_UNK:%s", tick)
             return
         (tickType, goTick) = self._processTick(tick)
+        assert not isinstance(goTick, TickRead)
         if tickType == TbtTickTypes.New:
-            self.callNew(goTick)
+            self.callNew[goTick.header.instrumentId](goTick)
         elif tickType == TbtTickTypes.Mod:
-            self.callMod(goTick)
+            self.callMod[goTick.header.instrumentId](goTick)
         elif tickType == TbtTickTypes.Can:
-            self.callCan(goTick)
+            self.callCan[goTick.header.instrumentId](goTick)
         elif tickType == TbtTickTypes.Trd:
-            self.callTrd(goTick)
-            '''TODO: Improvise'''
+            self.callTrd[goTick.header.instrumentId](goTick)
+        time.sleep(self._sleepTimeMs/1000)
 
     def _processTick(self, tick: TickRead):
         header = TbtTickHeader(tick.instrumentId, tick.eventTime)
@@ -66,13 +74,13 @@ class TbtProcessor:
         return (tick.tickType, goTick)
 
     def addTickHandler(self, tickType: TbtTickTypes, instId: int, toWhichFn):
-        assert self._instrumentId == instId
+        assert instId in self._ic.keys()
         if tickType == TbtTickTypes.New:
-            self.callNew = toWhichFn
+            self.callNew[instId] = toWhichFn
         elif tickType == TbtTickTypes.Mod:
-            self.callMod = toWhichFn
+            self.callMod[instId] = toWhichFn
         elif tickType == TbtTickTypes.Can:
-            self.callCan = toWhichFn
+            self.callCan[instId] = toWhichFn
         elif tickType == TbtTickTypes.Trd:
-            self.callTrd = toWhichFn
+            self.callTrd[instId] = toWhichFn
 

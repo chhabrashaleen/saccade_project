@@ -1,4 +1,6 @@
 import sys
+
+from src.bin.markets.tbt_datafeed.processor import TbtProcessor
 from src.bin.markets.tbt_datafeed.tick_dispatcher import *
 from src.bin.markets.tbt_datafeed.messages import *
 from src.bin.markets.oms.processor import *
@@ -19,15 +21,6 @@ class Level:
 
 
 class TickPrintOrderbook(object):
-    """
-    ASSUMPTION:
-    In order to keep it simple.
-    There is only one level on bid side and one on ask side.
-    All the bid quantities are placed at bestBid and all the ask quantities are placed at bestAsk.
-
-    If needed the orderbook can be developed fully into multiple bids and multiple asks levels.
-    That will require some comprehensive effort in developing the component infrastructure.
-    """
     _tickCount: int
     _bestBid = -sys.maxsize
     _bestAsk = sys.maxsize
@@ -83,7 +76,7 @@ class TickPrintOrderbook(object):
 
     def __str__(self):
         return ("#ORDERBOOK:%s instrumentId:%s; bestBid(%s %s); bestAsk(%s %s); sane=%s "
-                % (self._lastUpdateTime, self.tbtProcessor.getInstrumentId(), self.bestBid(), self.bestBidQty(),
+                % (self._lastUpdateTime, self.instrument.instrumentId, self.bestBid(), self.bestBidQty(),
                    self.bestAsk(), self.bestAskQty(), self.isSane()))
 
     def bestBid(self):
@@ -223,8 +216,8 @@ class TickPrintOrderbook(object):
         return self.getResidualQtyAsk() < 0
 
     def initialize(self, price):
-        self._bookArrayMinPrice = price * 7 / 10
-        self._bookArrayMaxPrice = price * 13 / 10
+        self._bookArrayMinPrice = price * 6 / 10
+        self._bookArrayMaxPrice = price * 14 / 10
         self._bookDataCount = int((self._bookArrayMaxPrice - self._bookArrayMinPrice) / self._tickSize)
         self._bookBids = [0] * self._bookDataCount
         self._bookAsks = [0] * self._bookDataCount
@@ -252,7 +245,7 @@ class TickPrintOrderbook(object):
         qq = tData.quantity
         assert int(pp % self._tickSize) == 0
         assert qq != 0
-        assert pp >= self._bookArrayMinPrice and pp <= self._bookArrayMaxPrice, ("minP:",self._bookArrayMinPrice,"pp:",pp,"maxP:",self._bookArrayMaxPrice)
+        assert pp >= self._bookArrayMinPrice and pp <= self._bookArrayMaxPrice, (f"minP:{self._bookArrayMinPrice}, pp:{pp}, maxP:{self._bookArrayMaxPrice}")
 
         idx = int((pp - self._bookArrayMinPrice)/self._tickSize)
         assert idx >= 0 and idx < self._bookDataCount

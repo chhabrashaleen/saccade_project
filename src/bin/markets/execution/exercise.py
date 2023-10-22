@@ -11,13 +11,13 @@ class InstOBTicks:
     trd = 0
     mod = 0
 
-    def __init__(self, _book: TickPrintOrderbook):
-        self.book = _book
-        self.tradable = self.book.instrument
-        self.tickerName = self.book.instrument.tickerName
-        self.book.addDispatch(self.hNew, self.hCan, self.hMod, self.hTrd)
+    def __init__(self, _book1: TickPrintOrderbook, _book2: TickPrintOrderbook):
+        self.book1 = _book1
+        self.book2 = _book2
+        self.book1.addDispatch(self.hNew, self.hCan, self.hMod, self.hTrd)
+        self.book2.addDispatch(self.hNew, self.hCan, self.hMod, self.hTrd)
         self.lastSnap = None
-        self.trdPrintCounts = 20
+        self.trdPrintCounts = 1200
 
     def hNew(self, obs: OBStatus, newTick: TbtTickNewCan):
         self.new += 1
@@ -25,21 +25,21 @@ class InstOBTicks:
         #     # logger.info(obs)
         #     logger.info("#NEW:%s", newTick)
         # logger.info("new:%s",copy(obs))
-        if self.trd <= self.trdPrintCounts and self.lastSnap is not None:
+        # if self.trd <= self.trdPrintCounts and self.lastSnap is not None:
             # logger.info(obs)
             # logger.info("lastSnap %s %s",self.lastSnap[1],self.lastSnap[0])
             # logger.info("#TRADE:%s", trdTick)
-            logger.info("#NEW_TICK: %s", obs)
+            # logger.info("#NEW_TICK: %s", obs)
         self.lastSnap = (copy(obs), "new")
 
     def hCan(self, obs: OBStatus, canTick: TbtTickNewCan):
         self.can += 1
 
-        if self.trd <= self.trdPrintCounts and self.lastSnap is not None:
+        # if self.trd <= self.trdPrintCounts and self.lastSnap is not None:
             # logger.info(obs)
             # logger.info("lastSnap %s %s",self.lastSnap[1],self.lastSnap[0])
             # logger.info("#TRADE:%s", trdTick)
-            logger.info("#CAN_TICK: %s", obs)
+            # logger.info("#CAN_TICK: %s", obs)
         self.lastSnap = (copy(obs), "can")
 
     def hMod(self, obs: OBStatus, modTick: TbtTickMod):
@@ -49,34 +49,35 @@ class InstOBTicks:
     def hTrd(self, obs: OBStatus, trdTick: TbtTickTrd):
         self.trd += 1
         if self.trd <= self.trdPrintCounts:
-            logger.info("%s %s",self.trd,trdTick)
+            logger.info("%s %s %s",self.trd,obs.header.instrumentId, trdTick)
             logger.info("#POST_TRADE_OBS %s",obs)
         self.lastSnap = (copy(obs), "new")
 
 
 def __main__():
-    # allTicks = reader.fetchTicks(file)
-    omsProcessor = OmsProcessor()
-    listener = TickListener("listenEvents",2)
-
     tdb1 = Tradable(InstrumentType.Equity, 1, "SCH", Decimal('0.01'), 1, True)
     tdb2 = Tradable(InstrumentType.Equity, 2, "SCS", Decimal('0.001'), 1, True)
 
-    tbtProcessor1 = TbtProcessor(tdb1.instrumentId)
-    orderbook1 = TickPrintOrderbook(tdb1, tbtProcessor1, omsProcessor)
-    obticks1 = InstOBTicks(orderbook1)
+    ic = InstrumentContainer()
+    ic.addInstrument(tdb1)
+    ic.addInstrument(tdb2)
+
+    tbtProcessor = TbtProcessor(ic)
+
+    omsProcessor1 = OmsProcessor()
+    omsProcessor2 = OmsProcessor()
+    orderbook1 = TickPrintOrderbook(tdb1, tbtProcessor, omsProcessor1)
+    orderbook2 = TickPrintOrderbook(tdb2, tbtProcessor, omsProcessor2)
+
+    obticks = InstOBTicks(orderbook1, orderbook2)
     # orderbook.addDispatch(obticks.hNew, obticks.hCan, obticks.hMod, obticks.hTrd)
 
-    tbtProcessor2 = TbtProcessor(tdb2.instrumentId)
-    orderbook2 = TickPrintOrderbook(tdb2, tbtProcessor2, omsProcessor)
-    obticks2 = InstOBTicks(orderbook2)
-
-    tickDispatcher = TickDispatcher(listener, tbtProcessor2)
-    # tickDispatcher = TickDispatcher(listener, tbtProcessor1)
+    listener = TickListener("myListener",2, 8080)
+    tickDispatcher = TickDispatcher(listener, tbtProcessor)
     tickDispatcher.beginEvents()
 
     logger.info("newTicks:%s, canTicks:%s, modTicks:%s, trdTicks:%s",
-                obticks2.new, obticks2.can, obticks2.mod, obticks2.trd)
+                obticks.new, obticks.can, obticks.mod, obticks.trd)
 
 if __name__ == '__main__':
     __main__()

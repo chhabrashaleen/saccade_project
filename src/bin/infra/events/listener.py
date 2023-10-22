@@ -1,11 +1,10 @@
 # first start the listener and then start the dispatcher to connect to it
 # broadcasts to clients
 
-import re
-import csv
 import socket
 import pickle
-import threading
+import time
+
 from src.bin.markets.tbt_datafeed.messages import *
 from decimal import Decimal
 # from src.config.data_cfg import input_file, delim
@@ -20,24 +19,24 @@ class TickListener:
     _toListen: int
     _totalClient: int
     _connections = []
-    # _tick1: TickRead
-    # _tick2: TickRead
+    _tick1: TickRead
+    _tick2: TickRead
 
     def __init__(self, name, totalClient, port=None, numToListen=5):
         self._name = name
-        if port is None:
-            self._port = int(input("Give the Listener Port: "))
+        self._port = int(input("Give the Listener Port: ")) if port is None else port
         self._toListen = numToListen
         self._totalClient = totalClient
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # self._clients_lock = threading.Lock()
         self.processTick = None
         self._tick1 = None
         self._tick2 = None
 
     def addProcessDelegate(self, func):
+        '''Process Tick function takes 1 argument -> tick: TickRead'''
         self.processTick = func
-    # def processTick(self, tick):
+
+    # def processTick(self, tick: TickRead):
     #     logger.info("#GOT:%s %s", tick.basicTickerName, tick)
 
     def start(self):
@@ -51,35 +50,38 @@ class TickListener:
             self._connections.append(conn)
 
     def processBothStreams(self):
-        if self._tick1 is None and self._tick2 is None :
+        if self._tick1 is None and self._tick2 is None:
             self._tick1 = pickle.loads(self._connections[0].recv(4096))
             self._tick2 = pickle.loads(self._connections[1].recv(4096))
         if not self._tick1 and not self._tick2:
-            self.server_socket.close()
+            self.close()
             return -1
         if not self._tick1:
-            # self._connections[0].close()
+            self._connections[0].close()
             self.processTick(self._tick2)
-            self._tick2 = pickle.loads(self._connections[0].recv(4096))
+            self._connections[1].send("Continue".encode())
+            self._tick2 = pickle.loads(self._connections[1].recv(4096))
         elif not self._tick2:
-            # self._connections[1].close()
+            self._connections[1].close()
             self.processTick(self._tick1)
+            self._connections[0].send("Continue".encode())
             self._tick1 = pickle.loads(self._connections[0].recv(4096))
         else:
             if self._tick1.eventTime < self._tick2.eventTime:
-                # toSent = "Hold" + self._tick2.basicTickerName
-                # self.server_socket.sendall(toSent.encode())
+                toSent = "Hold" + self._tick2.basicTickerName
+                self._connections[0].send(toSent.encode())
+                self._connections[1].send(toSent.encode())
                 self.processTick(self._tick1)
                 self._tick1 = pickle.loads(self._connections[0].recv(4096))
             else:
-                # toSent = "Hold" + self._tick1.basicTickerName
-                # self.server_socket.sendall(toSent.encode())
+                toSent = "Hold" + self._tick1.basicTickerName
+                self._connections[1].send(toSent.encode())
+                self._connections[0].send(toSent.encode())
                 self.processTick(self._tick2)
-                self._tick2 = pickle.loads(self._connections[0].recv(4096))
+                self._tick2 = pickle.loads(self._connections[1].recv(4096))
         return 1
 
     def listen(self):
-        first = True
         while True:
             try:
                 if len(self._connections) == 2:
@@ -93,20 +95,22 @@ class TickListener:
                         self.server_socket.close()
                         break
                     self.processTick(self._tick1)
+                    self._connections[0].send("Continue".encode())
             except KeyboardInterrupt:
                 self.server_socket.close()
                 logger.warn("Listener closed, by keyboard interruption")
 
-        return
+    def close(self):
+        self._connections[0].close()
+        self._connections[1].close()
+        self.server_socket.close()
 
-
-def main():
-    tListen = TickListener("Listener", 8888, None)
-    tListen.start()
-    tListen.listen()
-
-
-
-if __name__ == "__main__":
-    main()
+# def main():
+#     totalClient = 2
+#     tListen = TickListener("Listener", totalClient)
+#     tListen.start()
+#     tListen.listen()
+#
+# if __name__ == "__main__":
+#     main()
 

@@ -9,14 +9,13 @@ logger = log.logger
 
 class TickDispatcher(object):
     tbtProcessor: TbtProcessor
-    _allRawTicks: [TickRead]
+    listener: TickListener
 
     def __init__(self, tlisten: TickListener, tbtProc: TbtProcessor):
         self.tbtProcessor = tbtProc
         self.listener = tlisten
-        self.instId = tbtProc.getInstrumentId()
 
     def beginEvents(self):
-            self.listener.start()
-            self.listener.addProcessDelegate(self.tbtProcessor.readEvent)
-            self.listener.listen()
+        self.listener.start()
+        self.listener.addProcessDelegate(self.tbtProcessor.readEvent)
+        self.listener.listen()
