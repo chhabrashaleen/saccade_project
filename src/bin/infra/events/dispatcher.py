@@ -47,7 +47,7 @@ class Dispatcher:
                 self._sock.send(pickledData)
         except:
             logger.warning("Packet sending not working. Sleeping for some time...")
-            self.addSleep()
+            self.addSleep(10)
 
     def close(self):
         self._connected = False

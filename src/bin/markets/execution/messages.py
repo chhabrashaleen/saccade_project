@@ -2,7 +2,7 @@
 
 import datetime
 from enum import Enum
-
+from decimal import Decimal
 
 class Quote:
     qty: int

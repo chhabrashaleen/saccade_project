@@ -3,7 +3,8 @@ from src.config.data_cfg import inputSCS
 
 def main():
     tradable = Tradable(InstrumentType.Equity, 2, "SCS", Decimal('0.001'), 1, True)
-    port = int(input('Input Port you want to connect: '))
+    # port = int(input('Input Port you want to connect: '))
+    port = 8000
     eventInj = EventInject(port, tradable, inputSCS)
     eventInj.startInjection()
     eventInj.shutDown()

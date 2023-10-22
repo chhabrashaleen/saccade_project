@@ -2,7 +2,8 @@
 import sys
 from src.bin.markets.instruments import *
 from enum import Enum
-
+import src.config.logger as log
+logger = log.logger
 
 class RmsBlockedReason(Enum):
     NotBlocked = 0
@@ -13,18 +14,18 @@ class RmsBlockedReason(Enum):
 
 
 class RmsCoordinator(object):
-    _atMktBuyQty: int
-    _atMktSellQty: int
-    _filledNetQty: int
-    _filledTotalQty: int
+    _atMktBuyQty = 0
+    _atMktSellQty = 0
+    _filledNetQty = 0
+    _filledTotalQty = 0
 
     # Initializing with Open limits, we can also initialize with Closed limits by defining a bool with the constructor
-    _maxSingleOrderBuyQty: int(sys.maxsize)
-    _maxSingleOrderSellQty: int(-sys.maxsize)
-    _maxAtMktBuyQty: int(sys.maxsize)
-    _maxAtMktSellQty: int(-sys.maxsize)
-    _maxNetFilledQty: int(sys.maxsize)
-    _maxTotalFilledQty: int(sys.maxsize)
+    _maxSingleOrderBuyQty = int(sys.maxsize)
+    _maxSingleOrderSellQty = int(-sys.maxsize)
+    _maxAtMktBuyQty = int(sys.maxsize)
+    _maxAtMktSellQty = int(-sys.maxsize)
+    _maxNetFilledQty = int(sys.maxsize)
+    _maxTotalFilledQty = int(sys.maxsize)
 
     def __init__(self, inst: Tradable):
         self.instrument = inst
@@ -50,7 +51,7 @@ class RmsCoordinator(object):
         assert q != 0
         assert px % self.instrument.tickSize == 0
         assert q % self.instrument.lotSize == 0
-
+        logger.info("Entered RMS to check! InstId:%s Qty:%s", self.instrument.instrumentId, q)
         if q > 0:
             if ((q <= self._maxSingleOrderBuyQty) and (self._atMktBuyQty + q <= self._maxAtMktBuyQty) and
                     (self._filledNetQty + q <= self._maxNetFilledQty) and

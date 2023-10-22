@@ -21,25 +21,26 @@ class InstOBTicks:
 
     def hNew(self, obs: OBStatus, newTick: TbtTickNewCan):
         self.new += 1
-        # if self.new == 100:
-        #     # logger.info(obs)
-        #     logger.info("#NEW:%s", newTick)
+
+        if self.trd <= self.trdPrintCounts and self.lastSnap is not None:
+            # logger.info(obs)
+            # logger.info("#NEW:%s", newTick)
         # logger.info("new:%s",copy(obs))
         # if self.trd <= self.trdPrintCounts and self.lastSnap is not None:
             # logger.info(obs)
             # logger.info("lastSnap %s %s",self.lastSnap[1],self.lastSnap[0])
             # logger.info("#TRADE:%s", trdTick)
-            # logger.info("#NEW_TICK: %s", obs)
+            logger.info("#NEW:%s", obs)
         self.lastSnap = (copy(obs), "new")
 
     def hCan(self, obs: OBStatus, canTick: TbtTickNewCan):
         self.can += 1
 
-        # if self.trd <= self.trdPrintCounts and self.lastSnap is not None:
+        if self.trd <= self.trdPrintCounts and self.lastSnap is not None:
             # logger.info(obs)
             # logger.info("lastSnap %s %s",self.lastSnap[1],self.lastSnap[0])
             # logger.info("#TRADE:%s", trdTick)
-            # logger.info("#CAN_TICK: %s", obs)
+            logger.info("#CAN:%s", obs)
         self.lastSnap = (copy(obs), "can")
 
     def hMod(self, obs: OBStatus, modTick: TbtTickMod):
@@ -49,8 +50,8 @@ class InstOBTicks:
     def hTrd(self, obs: OBStatus, trdTick: TbtTickTrd):
         self.trd += 1
         if self.trd <= self.trdPrintCounts:
-            logger.info("%s %s %s",self.trd,obs.header.instrumentId, trdTick)
-            logger.info("#POST_TRADE_OBS %s",obs)
+            logger.info("%s %s %s",self.trd, obs.header.instrumentId, trdTick)
+            # logger.info("#POST_TRADE_OBS %s",obs)
         self.lastSnap = (copy(obs), "new")
 
 
@@ -64,15 +65,15 @@ def __main__():
 
     tbtProcessor = TbtProcessor(ic)
 
-    omsProcessor1 = OmsProcessor()
-    omsProcessor2 = OmsProcessor()
-    orderbook1 = TickPrintOrderbook(tdb1, tbtProcessor, omsProcessor1)
-    orderbook2 = TickPrintOrderbook(tdb2, tbtProcessor, omsProcessor2)
+    # omsProcessor1 = OmsProcessor()
+    # omsProcessor2 = OmsProcessor()
+    orderbook1 = TickPrintOrderbook(tdb1, tbtProcessor)
+    orderbook2 = TickPrintOrderbook(tdb2, tbtProcessor)
 
     obticks = InstOBTicks(orderbook1, orderbook2)
     # orderbook.addDispatch(obticks.hNew, obticks.hCan, obticks.hMod, obticks.hTrd)
 
-    listener = TickListener("myListener",2, 8080)
+    listener = TickListener("myListener",2, 8000)
     tickDispatcher = TickDispatcher(listener, tbtProcessor)
     tickDispatcher.beginEvents()
 

@@ -29,6 +29,10 @@ class OrderNew(object):
     immediateOrCancel: bool
     eventTime: datetime.datetime
 
+    def __str__(self):
+        return ("#OrderNew: orderManagerId:%s; orderNumber:%s; price:%s; quantity:%s"
+                % (self.orderManagerId, self.orderNumber, self.price, self.qty))
+
 
 class OrderMod(object):
     orderManagerId: int
@@ -56,6 +60,10 @@ class ConfirmNew(object):
     orderNumber: int
     eventTime: datetime.datetime
 
+    def __str__(self):
+        return ("#ConfirmNew: orderManagerId:%s; orderNumber:%s; eventTime:%s"
+                % (self.orderManagerId, self.orderNumber, self.eventTime))
+
 
 class ConfirmCan(object):
     orderManagerId: int
@@ -78,6 +86,10 @@ class Fill(object):
     price: Decimal
     qty: int
     eventTime: datetime.datetime
+
+    def __str__(self):
+        return ("#Fill: orderManagerId:%s; orderNumber:%s; price:%s; quantity:%s"
+                % (self.orderManagerId, self.orderNumber, self.price, self.qty))
 
 
 class RejectNew(object):

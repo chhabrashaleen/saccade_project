@@ -31,7 +31,7 @@ class Instrument(object):
         self.exchangeName = exchangeName
         assert tickSize > 0
 
-    def toString(self):
+    def __str__(self):
         return self.tickerName
 
 
@@ -70,6 +70,9 @@ class Tradable(Instrument):
         self._prevClose = 0
         self._lowRange = 0
         self._highRange = 0
+
+    def __str__(self):
+        return self.tickerName
 
     def setprevClose(self, prevClose):
         self._prevClose = prevClose

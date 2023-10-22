@@ -2,20 +2,20 @@
 import datetime
 import sys
 from src.bin.markets.instruments import *
-from rms import *
-from messages import *
-from processor import *
+from src.bin.markets.oms.rms import *
+from src.bin.markets.oms.messages import *
 from src.bin.infra.events.dispatcher import *
+from src.bin.markets.oms.obstatus import *
+from copy import copy
 import src.config.logger as log
 logger = log.logger
 
-class OrderManager(object):
 
+class OrderManager(object):
     orderManagerId: int
     omsTag: int
     omsTagName: str
     rmsCoordinator: RmsCoordinator
-    omsProcessor: OmsProcessor
     killswitch: KillSwitch
     allOS: AllOrdersStates
     ordersCount = 1            # 0 means rms denied
@@ -23,12 +23,14 @@ class OrderManager(object):
     tradable: Tradable
     instrumentId: int
     isIOC: bool
-    isFirstTime: True
+    # isFirstTime = True
     _dispatcher: Dispatcher
 
-    def __init__(self, tradable: Tradable, rc: RmsCoordinator, omsTag: int, omsTagName: str, omsPort: int, algoId=1, isIOC=True):
+    def __init__(self, tradable: Tradable, rc: RmsCoordinator, omsId: int, omsTag: int, omsTagName: str, disp: Dispatcher, algoId=1, isIOC=True):
         self.tradable = tradable
         self.rmsCoordinator = rc
+        self._dispatcher = disp
+        self.orderManagerId = omsId
         self.omsTag = omsTag
         self.omsTagName = omsTagName
         self.algoId = algoId
@@ -40,25 +42,9 @@ class OrderManager(object):
         self.orderState = OrderState()
         self.killswitch = KillSwitch(self.rmsCoordinator)
 
-        self._dispatcher = Dispatcher("OrderSend"+self.tradable.tickerName, omsPort)
-
-        '''OMS Processor Setup'''
-        self.omsProcessor = OmsProcessor(tradable, self._dispatcher)
-
-        self.omsProcessor.myHandlers[OrderToStrategyMsg.ConfirmNew] = self.handleConfirmNew
-        self.omsProcessor.myHandlers[OrderToStrategyMsg.ConfirmCan] = self.handleConfirmCan
-        self.omsProcessor.myHandlers[OrderToStrategyMsg.ConfirmMod] = self.handleConfirmMod
-        self.omsProcessor.myHandlers[OrderToStrategyMsg.Fill] = self.handleFill
-
-        self.omsProcessor.omsTagHash.instrumentId = self.instrumentId
-        self.omsProcessor.omsTagHash.omgTag = self.omsTag
-        self.omsProcessor.omsTagHash.omsTagName = self.omsTagName
-
-        self.omsProcessor.registerOms(self.omsProcessorReset, self.omsProcessor.myHandlers, self.omsProcessor.omsTagHash)
-
         if not self.tradable.permittedToTrade:
             self.killswitch.disallowTrading()
-            print("OMS created but Instrument not permitted to trade")
+            logger.info("OMS created but Instrument not permitted to trade")
 
         self.eventNewStatus = None
         self.eventCanStatus = None
@@ -66,22 +52,19 @@ class OrderManager(object):
         self.eventFill = None
         self.eventFinished = None
 
-    def startDispatcher(self):
-        self._dispatcher.connect()
-
-    def closeDispatcher(self):
-        self._dispatcher.close()
+    def getRms(self):
+        return self.rmsCoordinator
 
     def addEventListeners(self, eventNewStatus, eventCanStatus, eventModStatus, eventFill, eventFinished):
         '''
         IMPORTANT ASSIGNMENT OF FUNCTIONS FROM STRATEGY
         Passing Functions from Strategy to be called in order manager and execute within strategy
         '''
-        self.eventNewStatus = eventNewStatus()
-        self.eventCanStatus = eventCanStatus()
-        self.eventModStatus = eventModStatus()
-        self.eventFill = eventFill()
-        self.eventFinished = eventFinished()
+        self.eventNewStatus = eventNewStatus
+        self.eventCanStatus = eventCanStatus
+        self.eventModStatus = eventModStatus
+        self.eventFill = eventFill
+        self.eventFinished = eventFinished
 
     def getOrderState(self, order) -> OrderState:
         assert order.orderManagerId == self.orderManagerId
@@ -92,6 +75,7 @@ class OrderManager(object):
         allowTrade = self.rmsCoordinator.checkNew(newP, newQ)
         ordNew = OrderNew()
         if allowTrade:
+            logger.info("Trade allowed by RMS:%s", self.rmsCoordinator.instrument.tickerName)
             ordNew.orderManagerId = self.orderManagerId
             ordNew.orderNumber = self.ordersCount
             self.ordersCount += 1
@@ -105,14 +89,17 @@ class OrderManager(object):
     def orderNewExec(self, obscopy: OBStatus, ordNew: OrderNew) -> Order:
         self.rmsCoordinator.execNew(ordNew.price, ordNew.qty)
         self.allOS.addCreateOrdState(ordNew.orderNumber)
+        self.allOS.getOrdState(ordNew.orderNumber).order = Order(ordNew.orderManagerId, ordNew.orderNumber)
         self.allOS.getOrdState(ordNew.orderNumber).desiredPrice = ordNew.price
         self.allOS.getOrdState(ordNew.orderNumber).desiredQty = ordNew.qty
         self.allOS.getOrdState(ordNew.orderNumber).priceAtExchange = ordNew.price
         self.allOS.getOrdState(ordNew.orderNumber).qtyOpen = ordNew.qty
+        self.allOS.getOrdState(ordNew.orderNumber).qtyFilled = 0
         '''Dispatching the OrderState and BookStatus to exchange'''
         '''Assuming that the strategy will ONLY SEND NEW ORDERS. NO MODIFY AND NO CANCELS'''
         '''Dispatching orderState so that the Exchange can tell if there is a fill'''
         dispatch = (obscopy, self.allOS.getOrdState(ordNew.orderNumber))
+        logger.info("Dispatching Order to exchange:%s %s", obscopy, ordNew)
         self._dispatcher.sendDataPack(dispatch)
         return self.allOS.getOrdState(ordNew.orderNumber).order
 
@@ -121,7 +108,7 @@ class OrderManager(object):
         obscopy = copy(obs)
         checkVal = self.orderNewCheck(newP, newQ, eventTime)
         if checkVal['allow']:
-            print(OrderToAdaptMsg.OrderNew," ",checkVal['ordNew'])
+            logger.info("Executing Order New:%s %s",OrderToAdaptMsg.OrderNew, checkVal['ordNew'])
             return self.orderNewExec(obscopy, checkVal['ordNew'])
         else:
             return Order(self.orderManagerId, 0)
@@ -235,22 +222,8 @@ class OrderManager(object):
         else:
             return False
 
-    def omsProcessorReset(self):
-        # currentOutgoingMsg = self.omsProcessor.getOutgoingMsg()
-        self.killswitch.disallowTrading()
-        for i in range(1,self.ordersCount):
-            if i in self.allOS.keys():
-                os = self.allOS.getOrdState(i)
-                if not os.isFinished:
-                    if os.isConfirmed or os.desiredQty != 0:
-                        '''Send a cancel to Strategy'''
-                        self.rmsCoordinator.execCan(os.priceAtExchange, os.qtyOpen)
-                        os.qtyOpen = 0
-                        os.isFinished = True
-                        self.eventCanStatus((Order(self.orderManagerId, i), True, datetime.datetime.min, "OMS Reset"))
-
     def handleConfirmNew(self, confirmNew: ConfirmNew):
-        assert confirmNew.orderManagerId == self.orderManagerId
+        assert confirmNew.orderManagerId == self.orderManagerId, f"{confirmNew.orderManagerId} {self.orderManagerId} {self.instrumentId}"
         ordState = self.allOS.getOrdState(confirmNew.orderNumber)
         assert ordState is not None
         assert (ordState.desiredQty != 0 and not ordState.isConfirmed and not ordState.isFinished
@@ -308,7 +281,24 @@ class OrderManager(object):
         if ordState.isFinished:
             self.eventFinished(Order(fill.orderManagerId, fill.orderNumber))
 
+    def processExchangeMsg(self):
+        '''
+        Will be called from Strategy
+        Generally it is a constant listener, but here we will call it from strategy.
+        CALL FROM STRAT, JUST AFTER SENDING AN ORDER
+        '''
+        confirmNew = pickle.loads(self._dispatcher._sock.recv(4096))
+        assert isinstance(confirmNew, ConfirmNew)
+        logger.info("OMS:%s Got ConfirmNew:%s", self.instrumentId, confirmNew)
+        self.handleConfirmNew(confirmNew)
 
+        fill = pickle.loads(self._dispatcher._sock.recv(4096))
+        logger.info("OMS:%s Got Fill:%s", self.instrumentId, fill)
+        if fill == "No_FILL":
+            return
+        else:
+            assert isinstance(fill, Fill)
+            self.handleFill(fill)
 
 
 

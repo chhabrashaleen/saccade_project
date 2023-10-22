@@ -1,12 +1,13 @@
-import instruments
-import numpy as np
-import pandas as pd
+from src.bin.markets.instruments import *
 import datetime
+from decimal import Decimal
+import src.config.logger as log
+logger = log.logger
 
 
 class Pnl:
     def __init__(self, name: str, buyTcosts: Decimal, sellTcosts: Decimal, showTrades=True):
-        self.__name = name
+        self.__name = name+"_PNLENGINE"
         self.__buyTcosts = buyTcosts
         self.__sellTcosts = sellTcosts
         self.__showTrades = showTrades
@@ -38,7 +39,8 @@ class Pnl:
             self.__closedPnl = self.calculateDayMTM(price)
 
         if self.__showTrades:
-            print("#TRD: ", trdTime," ", self.__name," ",price," ",qty," ",extraInfo)
+            logger.info("#PNL_TRADE: %s %s %s %s %s", trdTime, self.__name, price, qty, extraInfo)
+            logger.info("%s: OpenPnl:%s, ClosedPnl:%s", self.__name, self.getOpenPnl(price), self.getClosedPnl())
 
     def calculateDayMTM(self, lastKnownPrice: Decimal) -> Decimal:
         assert lastKnownPrice != 0

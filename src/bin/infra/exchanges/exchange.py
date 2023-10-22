@@ -7,6 +7,7 @@ import time
 from src.bin.markets.oms.obstatus import *
 from src.bin.markets.oms.messages import *
 import src.config.logger as log
+import time
 logger = log.logger
 
 class Exchange:
@@ -17,7 +18,7 @@ class Exchange:
     _toListen: int
     _totalClient: int
     _connections = []
-    _allOS = AllOrdersStates()
+    _allOS = {}
 
     def __init__(self, tdb, port, totalClient=1, toListen=1):
         self._tdb = tdb
@@ -43,6 +44,7 @@ class Exchange:
             if not packet:
                 logger.warn("%s Nothing to dispatch, no data received.", packet)
             else:
+                logger.info("Exchange:%s Sending packet:%s", self._tdb.instrumentId, packet)
                 pickledData = pickle.dumps(packet)
                 self._connections[0].send(pickledData)
         except:
@@ -53,6 +55,7 @@ class Exchange:
             try:
                 assert len(self._connections) == 1
                 data = (self._obStatus, self._orderState) = pickle.loads(self._connections[0].recv(4096))
+                logger.info("Exchange:%s Received OBStatus:%s", self._tdb.instrumentId, self._obStatus)
                 if not data:
                     self.server_socket.close()
                     break
@@ -72,11 +75,15 @@ class Exchange:
         assert not orderState.isFinished and not orderState.isCancelSent
         self._allOS[orderState.order.orderNumber] = orderState
         '''Sending a confirmNew message'''
-        self.sendDataPack(self.createConfirmNew(obs, orderState))
+        confirmNew = self.createConfirmNew(obs, orderState)
+        logger.info("Exchange:%s prepared ConfirmNew:%s", self._tdb.instrumentId, confirmNew)
+
+        time.sleep(1 / 1000)
+        self.sendDataPack(confirmNew)
 
         gotFill = False
         '''Checking for Fills'''
-        for ordNum, ordState in self._allOS:
+        for ordNum, ordState in self._allOS.items():
             assert isinstance(ordState, OrderState)
             if ordState.isConfirmed and not ordState.isFinished and not ordState.isCancelSent:
                 if orderState.desiredQty > 0:
@@ -87,6 +94,7 @@ class Exchange:
                         '''Filling at best ask'''
                         fill.price = obs.bestAsk
                         '''Sending the fill message'''
+                        logger.info("Exchange:%s prepared Fill:%s", self._tdb.instrumentId, fill)
                         self.sendDataPack(fill)
                         break
                 elif orderState.desiredQty < 0:
@@ -97,10 +105,11 @@ class Exchange:
                         '''Filling at best bid'''
                         fill.price = obs.bestBid
                         '''Sending the fill message'''
+                        logger.info("Exchange:%s prepared Fill:%s", self._tdb.instrumentId, fill)
                         self.sendDataPack(fill)
                         break
-
         if not gotFill:
+            logger.info("Exchange:%s NO_FILL", self._tdb.instrumentId)
             self.sendDataPack("NO_FILL")
 
     def createFill(self, obs: OBStatus, orderState: OrderState) -> Fill:
@@ -111,6 +120,7 @@ class Exchange:
         '''Assuming that the fill happens at the mid price. This thing is handled above'''
         fill.price = (obs.bestAsk + obs.bestBid)/2
         fill.qty = orderState.desiredQty
+        fill.eventTime = obs.header.eventTime
         return fill
 
     def createConfirmNew(self, obs: OBStatus, orderState: OrderState) -> ConfirmNew:

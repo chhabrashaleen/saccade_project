@@ -3,7 +3,6 @@ import sys
 from src.bin.markets.tbt_datafeed.processor import TbtProcessor
 from src.bin.markets.tbt_datafeed.tick_dispatcher import *
 from src.bin.markets.tbt_datafeed.messages import *
-from src.bin.markets.oms.processor import *
 from src.bin.markets.oms.obstatus import *
 import src.config.logger as log
 from decimal import Decimal
@@ -46,9 +45,9 @@ class TickPrintOrderbook(object):
     _dispatchOnlyBest = True
     _dispatchOnlySane = True
 
-    def __init__(self, inst: Tradable, tbtProc: TbtProcessor, omsProc: OmsProcessor):
+    def __init__(self, inst: Tradable, tbtProc: TbtProcessor):
         self.tbtProcessor = tbtProc
-        self.omsProcessor = omsProc
+        # self.omsProcessor = omsProc
         self.instrument = inst
         self._tickSize = inst.tickSize
         self.newDispatchFn = None
@@ -281,7 +280,7 @@ class TickPrintOrderbook(object):
                 return
 
         self.newDispatchFn(copy(self._OBStatus), tData)
-        self.omsProcessor.processOrders(copy(self._OBStatus))
+        # self.omsProcessor.processOrders(copy(self._OBStatus))
         self._tickBeingProcessed = False
 
     def handleCan(self, tData):
@@ -331,7 +330,7 @@ class TickPrintOrderbook(object):
                 return
 
         self.canDispatchFn(copy(self._OBStatus), tData)
-        self.omsProcessor.processOrders(copy(self._OBStatus))
+        # self.omsProcessor.processOrders(copy(self._OBStatus))
         self._tickBeingProcessed = False
 
     def handleMod(self, tData):
@@ -402,7 +401,7 @@ class TickPrintOrderbook(object):
                 return
 
         self.modDispatchFn(copy(self._OBStatus), tData)
-        self.omsProcessor.processOrders(copy(self._OBStatus))
+        # self.omsProcessor.processOrders(copy(self._OBStatus))
         self._tickBeingProcessed = False
 
     def handleTrd(self, tData):
@@ -466,7 +465,7 @@ class TickPrintOrderbook(object):
                 return
 
         self.trdDispatchFn(copy(self._OBStatus), tData)
-        self.omsProcessor.processOrders(copy(self._OBStatus))
+        # self.omsProcessor.processOrders(copy(self._OBStatus))
         self._tickBeingProcessed = False
 
     def scanForNextBestBid(self, idx):

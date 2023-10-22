@@ -14,6 +14,10 @@ class Order:
         else:
             return True
 
+    def __str__(self):
+        return ("#Order(%s, %s)"%(self.orderManagerId, self.orderNumber))
+
+
 class OrderState:
     order: Order
     desiredPrice: Decimal

@@ -3,7 +3,8 @@ from src.config.data_cfg import inputSCH
 
 def main():
     tradable = Tradable(InstrumentType.Equity, 1, "SCH", Decimal('0.01'), 1, True)
-    port = int(input('Input Port you want to connect: '))
+    # port = int(input('Input Port you want to connect: '))
+    port = 8000
     eventInj = EventInject(port, tradable, inputSCH)
     eventInj.startInjection()
     eventInj.shutDown()
