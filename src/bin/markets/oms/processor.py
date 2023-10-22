@@ -1,34 +1,48 @@
+import pickle
+
 from src.bin.markets.instruments import *
 from src.bin.markets.tbt_datafeed.tick_print_orderbook import *
 from src.bin.markets.oms.obstatus import *
-
-class DispatchHeader:
-    msgCode: int
+from src.bin.markets.oms.messages import *
+from src.bin.infra.events.dispatcher import *
+import src.config.logger as log
+logger = log.logger
 
 
 class OmsTagHash:
     instrumentId: int
     omgTag: int
-    algoId: int
-
+    omsTagName: str
 
 class OmsProcessor:
-
-    myHandlers: dict
+    myHandlers = {}
     omsTagHash: OmsTagHash
+    tradable: Tradable
+    _dispatcher: Dispatcher
 
-    def __init__(self):
-
+    def __init__(self, tradable, dispatcher):
         self.reset = None
-
+        self.tradable = tradable
+        self._dispatcher = dispatcher
 
     def registerOms(self, omsProcessorReset, myHnd, tagHash):
         self.reset = omsProcessorReset
-        self.myHandlers = myHnd
-        self.omsTagHash = tagHash
+        assert self.myHandlers == myHnd
+        assert self.omsTagHash == tagHash
 
-    def processOrders(self, obs: OBStatus):
+    def processExchangeMsg(self):
+        '''
+        Will be called from Strategy
+        Generally it is a constant listener, but here we will call it from strategy.
+        CALL FROM STRAT, JUST AFTER SENDING AN ORDER
+        '''
+        confirmNew = pickle.loads(self._dispatcher._sock.recv(4096))
+        assert isinstance(confirmNew, ConfirmNew)
+        self.myHandlers[OrderToStrategyMsg.ConfirmNew](ConfirmNew)
 
-        pass
-
-
+        fill = pickle.loads(self._dispatcher._sock.recv(4096))
+        if fill == "No_FILL":
+            return
+        else:
+            assert isinstance(fill, Fill)
+            self.myHandlers[OrderToStrategyMsg.Fill](Fill)

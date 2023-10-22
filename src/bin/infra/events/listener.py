@@ -40,7 +40,6 @@ class TickListener:
     #     logger.info("#GOT:%s %s", tick.basicTickerName, tick)
 
     def start(self):
-        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_socket.bind((self._host, self._port))
         self.server_socket.listen(self._toListen)  # Listen for up to 5 incoming connections
         logger.info("Server listening on %s:%s", self._host, self._port)
@@ -101,8 +100,6 @@ class TickListener:
                 logger.warn("Listener closed, by keyboard interruption")
 
     def close(self):
-        self._connections[0].close()
-        self._connections[1].close()
         self.server_socket.close()
 
 # def main():

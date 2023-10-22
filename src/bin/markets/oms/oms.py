@@ -5,7 +5,9 @@ from src.bin.markets.instruments import *
 from rms import *
 from messages import *
 from processor import *
-
+from src.bin.infra.events.dispatcher import *
+import src.config.logger as log
+logger = log.logger
 
 class OrderManager(object):
 
@@ -22,11 +24,11 @@ class OrderManager(object):
     instrumentId: int
     isIOC: bool
     isFirstTime: True
+    _dispatcher: Dispatcher
 
-    def __init__(self, tradable: Tradable, rc: RmsCoordinator, omsProc: OmsProcessor, omsTag: int, omsTagName: str, algoId=1, isIOC=True):
+    def __init__(self, tradable: Tradable, rc: RmsCoordinator, omsTag: int, omsTagName: str, omsPort: int, algoId=1, isIOC=True):
         self.tradable = tradable
         self.rmsCoordinator = rc
-        self.omsProcessor = omsProc
         self.omsTag = omsTag
         self.omsTagName = omsTagName
         self.algoId = algoId
@@ -38,7 +40,11 @@ class OrderManager(object):
         self.orderState = OrderState()
         self.killswitch = KillSwitch(self.rmsCoordinator)
 
+        self._dispatcher = Dispatcher("OrderSend"+self.tradable.tickerName, omsPort)
+
         '''OMS Processor Setup'''
+        self.omsProcessor = OmsProcessor(tradable, self._dispatcher)
+
         self.omsProcessor.myHandlers[OrderToStrategyMsg.ConfirmNew] = self.handleConfirmNew
         self.omsProcessor.myHandlers[OrderToStrategyMsg.ConfirmCan] = self.handleConfirmCan
         self.omsProcessor.myHandlers[OrderToStrategyMsg.ConfirmMod] = self.handleConfirmMod
@@ -46,7 +52,7 @@ class OrderManager(object):
 
         self.omsProcessor.omsTagHash.instrumentId = self.instrumentId
         self.omsProcessor.omsTagHash.omgTag = self.omsTag
-        self.omsProcessor.omsTagHash.algoId = self.algoId
+        self.omsProcessor.omsTagHash.omsTagName = self.omsTagName
 
         self.omsProcessor.registerOms(self.omsProcessorReset, self.omsProcessor.myHandlers, self.omsProcessor.omsTagHash)
 
@@ -60,9 +66,17 @@ class OrderManager(object):
         self.eventFill = None
         self.eventFinished = None
 
-    # IMPORTANT ASSIGNMENT OF FUNCTIONS FROM STRATEGY
-    # Passing Functions from Strategy to be called in order manager and execute within strategy
+    def startDispatcher(self):
+        self._dispatcher.connect()
+
+    def closeDispatcher(self):
+        self._dispatcher.close()
+
     def addEventListeners(self, eventNewStatus, eventCanStatus, eventModStatus, eventFill, eventFinished):
+        '''
+        IMPORTANT ASSIGNMENT OF FUNCTIONS FROM STRATEGY
+        Passing Functions from Strategy to be called in order manager and execute within strategy
+        '''
         self.eventNewStatus = eventNewStatus()
         self.eventCanStatus = eventCanStatus()
         self.eventModStatus = eventModStatus()
@@ -88,20 +102,27 @@ class OrderManager(object):
             ordNew.eventTime = eventTime
         return {'allow': allowTrade, 'ordNew': ordNew}
 
-    def orderNewExec(self, ordNew: OrderNew) -> Order:
+    def orderNewExec(self, obscopy: OBStatus, ordNew: OrderNew) -> Order:
         self.rmsCoordinator.execNew(ordNew.price, ordNew.qty)
         self.allOS.addCreateOrdState(ordNew.orderNumber)
         self.allOS.getOrdState(ordNew.orderNumber).desiredPrice = ordNew.price
         self.allOS.getOrdState(ordNew.orderNumber).desiredQty = ordNew.qty
         self.allOS.getOrdState(ordNew.orderNumber).priceAtExchange = ordNew.price
         self.allOS.getOrdState(ordNew.orderNumber).qtyOpen = ordNew.qty
+        '''Dispatching the OrderState and BookStatus to exchange'''
+        '''Assuming that the strategy will ONLY SEND NEW ORDERS. NO MODIFY AND NO CANCELS'''
+        '''Dispatching orderState so that the Exchange can tell if there is a fill'''
+        dispatch = (obscopy, self.allOS.getOrdState(ordNew.orderNumber))
+        self._dispatcher.sendDataPack(dispatch)
         return self.allOS.getOrdState(ordNew.orderNumber).order
 
-    def orderNew(self, newP, newQ, eventTime: datetime.datetime):
+    def orderNew(self, obs: OBStatus, newP, newQ, eventTime: datetime.datetime):
+        '''Will be called from Strategy'''
+        obscopy = copy(obs)
         checkVal = self.orderNewCheck(newP, newQ, eventTime)
         if checkVal['allow']:
             print(OrderToAdaptMsg.OrderNew," ",checkVal['ordNew'])
-            return self.orderNewExec(checkVal['ordNew'])
+            return self.orderNewExec(obscopy, checkVal['ordNew'])
         else:
             return Order(self.orderManagerId, 0)
 
@@ -123,7 +144,7 @@ class OrderManager(object):
         else:
             return {'allow': False, 'ordCan': ordCan}
 
-    def orderCanExec(self, ordCan: OrderCan) -> Order:
+    def orderCanExec(self, obscopy: OBStatus, ordCan: OrderCan) -> Order:
         assert ordCan.orderManagerId == self.orderManagerId
         assert ordCan.orderManagerId < self.ordersCount
         ordState = self.allOS.getOrdState(ordCan.orderNumber)
@@ -131,13 +152,19 @@ class OrderManager(object):
         if not ordState.isFinished:
             ordState.desiredQty = 0
         ordState.isCancelSent = True
+        '''Dispatching the Order and BookStatus to exchange'''
+        '''This is the correct way of sending orders, but this will not be called'''
+        dispatch = (obscopy, Order(self.orderManagerId, ordCan.orderNumber))
+        self._dispatcher.sendDataPack(dispatch)
         return Order(self.orderManagerId, ordCan.orderNumber)
 
-    def orderCan(self, whichOrder: Order, eventTime: datetime.datetime):
+    def orderCan(self, obs: OBStatus, whichOrder: Order, eventTime: datetime.datetime):
+        '''Will be called from Strategy'''
+        obscopy = copy(obs)
         checkVal = self.orderCanCheck(whichOrder, eventTime)
         if checkVal['allow']:
-            print(OrderToAdaptMsg.OrderCan," ",checkVal['ordCan'])
-        self.orderCanExec(checkVal['ordCan'])
+            logger.info("%s %s",OrderToAdaptMsg.OrderCan, checkVal['ordCan'])
+            self.orderCanExec(obscopy, checkVal['ordCan'])
         return checkVal['allow']
 
     def orderModCheck(self, whichOrder: Order, modPrice: bool, newP: Decimal, modQty: bool,
@@ -182,7 +209,7 @@ class OrderManager(object):
 
         return {'allow': allowMod, 'ordMod': ordMod}
 
-    def orderModExec(self, ordMod: OrderMod) -> Order:
+    def orderModExec(self, obscopy, ordMod: OrderMod) -> Order:
         assert ordMod.orderManagerId == self.orderManagerId
         assert ordMod.instrumentId == self.instrumentId
         assert ordMod.orderManagerId < self.ordersCount
@@ -191,13 +218,19 @@ class OrderManager(object):
         ordState.desiredQty = ordMod.modifyQty
         ordState.desiredPrice = ordMod.modifyPrice
         ordState.isModifySent = True
+        '''Dispatching the Order and BookStatus to exchange'''
+        '''This is the correct way of sending orders, but this will not be called'''
+        dispatch = (obscopy, Order(self.orderManagerId, ordMod.orderNumber))
+        self._dispatcher.sendDataPack(dispatch)
         return Order(self.orderManagerId, ordMod.orderNumber)
 
-    def orderMod(self, whichOrder: Order, modPrice: bool, newP: Decimal, modQty: bool,
+    def orderMod(self, obs: OBStatus, whichOrder: Order, modPrice: bool, newP: Decimal, modQty: bool,
                  newQ: int, eventTime: datetime.datetime):
+        '''Will be called from Strategy'''
+        obscopy = copy(obs)
         checkVal = self.orderModCheck(whichOrder, modPrice, newP, modQty, newQ, eventTime)
         if checkVal['allow']:
-            self.orderModExec(checkVal['ordMod'])
+            self.orderModExec(obscopy, checkVal['ordMod'])
             return True
         else:
             return False
