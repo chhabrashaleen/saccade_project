@@ -240,9 +240,6 @@ class HitStrategy():
     def getStrategyName(self) -> str:
         return "HiLoHit"
 
-    def getStrategyType(self):
-        return ExecutionType.Hit
-
     def startAllDispatcher(self):
         self._schDispatcher.connect()
         self._scsDispatcher.connect()
