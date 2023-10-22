@@ -1,8 +1,9 @@
 # This module is a basic hit execution strategy using the designed framework
 
+import datetime
+from enum import Enum
+from decimal import Decimal
 from src.bin.markets.oms.oms import *
-from src.bin.markets.execution.messages import *
-# from src.bin.markets.oms.processor import *
 from src.bin.markets.tbt_datafeed.tick_print_orderbook import *
 from src.bin.markets.tbt_datafeed.tick_dispatcher import *
 from src.bin.markets.oms.rms import *
@@ -37,7 +38,7 @@ class HiLo:
             self._prices = self._prices[1:61]
 
 
-class HitStrategy(ExecutionStrategy):
+class HitStrategy():
 
     _oid: Order
     _quitExecution: bool

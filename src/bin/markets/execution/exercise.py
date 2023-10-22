@@ -65,13 +65,10 @@ def __main__():
 
     tbtProcessor = TbtProcessor(ic)
 
-    # omsProcessor1 = OmsProcessor()
-    # omsProcessor2 = OmsProcessor()
     orderbook1 = TickPrintOrderbook(tdb1, tbtProcessor)
     orderbook2 = TickPrintOrderbook(tdb2, tbtProcessor)
 
     obticks = InstOBTicks(orderbook1, orderbook2)
-    # orderbook.addDispatch(obticks.hNew, obticks.hCan, obticks.hMod, obticks.hTrd)
 
     listener = TickListener("myListener",2, 8000)
     tickDispatcher = TickDispatcher(listener, tbtProcessor)

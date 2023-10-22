@@ -11,13 +11,10 @@ class Dispatcher:
     _host = '127.0.0.1'
     _port: int
     _connected = False
-    # _toListen: int
 
-    def __init__(self, name, port ): #, toListen=True, listenNumber=1):
+    def __init__(self, name, port ):
         self._name = name
         self._port = port
-        # self._toListen = toListen
-        # self._listenNum = listenNumber
         self._send = True
 
     def getName(self):
@@ -28,12 +25,9 @@ class Dispatcher:
 
     def connect(self):
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # Connecting with Server
         logger.info("#Connecting Dispatcher: %s:%s", self._name, self._port)
         self._sock.connect((self._host, self._port))
         self._connected = True
-        # if self._toListen == True:
-        #     self._sock.listen(self._listenNum)
 
     def sendDataPack(self, packet):
         assert self._send

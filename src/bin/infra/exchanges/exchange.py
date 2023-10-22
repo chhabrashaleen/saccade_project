@@ -66,7 +66,7 @@ class Exchange:
 
     def processAllOrders(self, obs: OBStatus, orderState: OrderState):
         '''
-        Assuming that all orders will be of Qty=1 and will get filled or remain open, removing the
+        Assuming that all orders will be of absolute Qty=1 and will get filled or remain open, removing the
         possibility of partial fills, and there will be only one Fill at a time.
         If the current order is a Market Order, it will be filled, and we will keep
         the remaining open limit orders unchecked. All these cases can also be handled in current infra.
@@ -74,7 +74,8 @@ class Exchange:
         orderState.isConfirmed = True
         assert not orderState.isFinished and not orderState.isCancelSent
         self._allOS[orderState.order.orderNumber] = orderState
-        '''Sending a confirmNew message'''
+
+        '''Strategy also Sending a confirmNew message'''
         confirmNew = self.createConfirmNew(obs, orderState)
         logger.info("Exchange:%s prepared ConfirmNew:%s", self._tdb.instrumentId, confirmNew)
 
