@@ -1,0 +1,108 @@
+root@shaleenDell:/mnt/e/git/saccade_project# python src/bin/infra/exchanges/exchangeSCH.py
+2023-10-23 05:07:10,157:SACCADE:INFO::Server listening on 127.0.0.1:8080
+2023-10-23 05:07:18,829:SACCADE:INFO::Accepted Connection from: ('127.0.0.1', 65117)
+2023-10-23 05:07:27,275:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:45:00.103920; instrumentId:1; bestBid:106.99; bestBidQuantity:3; bestAsk:107.0; bestAskQuantity:-20
+2023-10-23 05:07:27,281:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:1; eventTime:2021-01-04 06:45:00.103920
+2023-10-23 05:07:27,283:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:1; eventTime:2021-01-04 06:45:00.103920
+2023-10-23 05:07:27,286:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:1; price:107.0; quantity:1
+2023-10-23 05:07:27,290:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:1; price:107.0; quantity:1
+2023-10-23 05:08:27,178:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:49:12.565667; instrumentId:1; bestBid:106.51; bestBidQuantity:4; bestAsk:106.52; bestAskQuantity:-1
+2023-10-23 05:08:27,179:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:2; eventTime:2021-01-04 06:49:12.565667
+2023-10-23 05:08:27,181:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:2; eventTime:2021-01-04 06:49:12.565667
+2023-10-23 05:08:27,181:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:2; price:106.51; quantity:-1
+2023-10-23 05:08:27,182:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:2; price:106.51; quantity:-1
+2023-10-23 05:09:06,827:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:52:47.219752; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-4
+2023-10-23 05:09:06,829:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:3; eventTime:2021-01-04 06:52:47.219752
+2023-10-23 05:09:06,830:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:3; eventTime:2021-01-04 06:52:47.219752
+2023-10-23 05:09:06,831:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:3; price:106.65; quantity:1
+2023-10-23 05:09:06,831:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:3; price:106.65; quantity:1
+2023-10-23 05:09:07,957:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:52:57.250830; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-4
+2023-10-23 05:09:07,959:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:4; eventTime:2021-01-04 06:52:57.250830
+2023-10-23 05:09:07,960:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:4; eventTime:2021-01-04 06:52:57.250830
+2023-10-23 05:09:07,961:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:4; price:106.65; quantity:1
+2023-10-23 05:09:07,961:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:4; price:106.65; quantity:1
+2023-10-23 05:09:10,378:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:53:12.631395; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-6
+2023-10-23 05:09:10,379:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:5; eventTime:2021-01-04 06:53:12.631395
+2023-10-23 05:09:10,381:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:5; eventTime:2021-01-04 06:53:12.631395
+2023-10-23 05:09:10,381:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:5; price:106.65; quantity:1
+2023-10-23 05:09:10,381:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:5; price:106.65; quantity:1
+2023-10-23 05:09:12,287:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:53:23.370524; instrumentId:1; bestBid:106.64; bestBidQuantity:5; bestAsk:106.65; bestAskQuantity:-8
+2023-10-23 05:09:12,296:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:6; eventTime:2021-01-04 06:53:23.370524
+2023-10-23 05:09:12,299:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:6; eventTime:2021-01-04 06:53:23.370524
+2023-10-23 05:09:12,304:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:6; price:106.65; quantity:1
+2023-10-23 05:09:12,306:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:6; price:106.65; quantity:1
+2023-10-23 05:09:14,010:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:53:35.200011; instrumentId:1; bestBid:106.64; bestBidQuantity:5; bestAsk:106.65; bestAskQuantity:-11
+2023-10-23 05:09:14,014:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:7; eventTime:2021-01-04 06:53:35.200011
+2023-10-23 05:09:14,020:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:7; eventTime:2021-01-04 06:53:35.200011
+2023-10-23 05:09:14,022:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:7; price:106.65; quantity:1
+2023-10-23 05:09:14,027:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:7; price:106.65; quantity:1
+2023-10-23 05:09:15,419:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:53:45.206161; instrumentId:1; bestBid:106.66; bestBidQuantity:6; bestAsk:106.67; bestAskQuantity:-4
+2023-10-23 05:09:15,423:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:8; eventTime:2021-01-04 06:53:45.206161
+2023-10-23 05:09:15,430:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:8; eventTime:2021-01-04 06:53:45.206161
+2023-10-23 05:09:15,431:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:8; price:106.67; quantity:1
+2023-10-23 05:09:15,435:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:8; price:106.67; quantity:1
+2023-10-23 05:09:16,884:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:53:55.727472; instrumentId:1; bestBid:106.7; bestBidQuantity:11; bestAsk:106.72; bestAskQuantity:-8
+2023-10-23 05:09:16,889:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:9; eventTime:2021-01-04 06:53:55.727472
+2023-10-23 05:09:16,896:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:9; eventTime:2021-01-04 06:53:55.727472
+2023-10-23 05:09:16,899:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:9; price:106.72; quantity:1
+2023-10-23 05:09:16,901:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:9; price:106.72; quantity:1
+2023-10-23 05:09:18,730:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:54:05.888054; instrumentId:1; bestBid:106.70; bestBidQuantity:7; bestAsk:106.72; bestAskQuantity:-9
+2023-10-23 05:09:18,734:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:10; eventTime:2021-01-04 06:54:05.888054
+2023-10-23 05:09:18,740:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:10; eventTime:2021-01-04 06:54:05.888054
+2023-10-23 05:09:18,745:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:10; price:106.72; quantity:1
+2023-10-23 05:09:18,745:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:10; price:106.72; quantity:1
+2023-10-23 05:09:20,833:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:54:17.444625; instrumentId:1; bestBid:106.72; bestBidQuantity:1; bestAsk:106.73; bestAskQuantity:-6
+2023-10-23 05:09:20,839:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:11; eventTime:2021-01-04 06:54:17.444625
+2023-10-23 05:09:20,842:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:11; eventTime:2021-01-04 06:54:17.444625
+2023-10-23 05:09:20,844:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:11; price:106.73; quantity:1
+2023-10-23 05:09:20,850:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:11; price:106.73; quantity:1
+2023-10-23 05:09:22,134:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:54:27.618959; instrumentId:1; bestBid:106.72; bestBidQuantity:7; bestAsk:106.74; bestAskQuantity:-9
+2023-10-23 05:09:22,139:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:12; eventTime:2021-01-04 06:54:27.618959
+2023-10-23 05:09:22,145:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:12; eventTime:2021-01-04 06:54:27.618959
+2023-10-23 05:09:22,147:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:12; price:106.74; quantity:1
+2023-10-23 05:09:22,152:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:12; price:106.74; quantity:1
+2023-10-23 05:09:23,275:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:54:37.840474; instrumentId:1; bestBid:106.74; bestBidQuantity:8; bestAsk:106.76; bestAskQuantity:-12
+2023-10-23 05:09:23,279:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:13; eventTime:2021-01-04 06:54:37.840474
+2023-10-23 05:09:23,285:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:13; eventTime:2021-01-04 06:54:37.840474
+2023-10-23 05:09:23,287:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:13; price:106.76; quantity:1
+2023-10-23 05:09:23,292:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:13; price:106.76; quantity:1
+2023-10-23 05:09:26,984:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:54:48.359027; instrumentId:1; bestBid:106.8; bestBidQuantity:1; bestAsk:106.81; bestAskQuantity:-4
+2023-10-23 05:09:26,988:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:14; eventTime:2021-01-04 06:54:48.359027
+2023-10-23 05:09:26,991:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:14; eventTime:2021-01-04 06:54:48.359027
+2023-10-23 05:09:26,994:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:14; price:106.81; quantity:1
+2023-10-23 05:09:26,999:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:14; price:106.81; quantity:1
+2023-10-23 05:09:28,943:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 06:54:58.494287; instrumentId:1; bestBid:106.80; bestBidQuantity:5; bestAsk:106.81; bestAskQuantity:-5
+2023-10-23 05:09:28,947:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:15; eventTime:2021-01-04 06:54:58.494287
+2023-10-23 05:09:28,953:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:15; eventTime:2021-01-04 06:54:58.494287
+2023-10-23 05:09:28,956:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:15; price:106.81; quantity:1
+2023-10-23 05:09:28,956:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:15; price:106.81; quantity:1
+2023-10-23 05:10:26,835:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 07:00:02.502098; instrumentId:1; bestBid:106.67; bestBidQuantity:6; bestAsk:106.68; bestAskQuantity:-1
+2023-10-23 05:10:26,838:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:16; eventTime:2021-01-04 07:00:02.502098
+2023-10-23 05:10:26,840:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:16; eventTime:2021-01-04 07:00:02.502098
+2023-10-23 05:10:26,842:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:16; price:106.67; quantity:-1
+2023-10-23 05:10:26,843:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:16; price:106.67; quantity:-1
+2023-10-23 05:10:38,095:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 07:00:13.177731; instrumentId:1; bestBid:106.85; bestBidQuantity:1; bestAsk:106.86; bestAskQuantity:-5
+2023-10-23 05:10:38,099:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:17; eventTime:2021-01-04 07:00:13.177731
+2023-10-23 05:10:38,102:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:17; eventTime:2021-01-04 07:00:13.177731
+2023-10-23 05:10:38,105:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:17; price:106.86; quantity:1
+2023-10-23 05:10:38,105:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:17; price:106.86; quantity:1
+2023-10-23 05:11:40,519:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 07:01:40.818519; instrumentId:1; bestBid:106.67; bestBidQuantity:10; bestAsk:106.68; bestAskQuantity:-1
+2023-10-23 05:11:40,525:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:18; eventTime:2021-01-04 07:01:40.818519
+2023-10-23 05:11:40,527:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:18; eventTime:2021-01-04 07:01:40.818519
+2023-10-23 05:11:40,530:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:18; price:106.67; quantity:-1
+2023-10-23 05:11:40,536:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:18; price:106.67; quantity:-1
+2023-10-23 05:11:47,073:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 07:01:51.842856; instrumentId:1; bestBid:106.65; bestBidQuantity:8; bestAsk:106.66; bestAskQuantity:-3
+2023-10-23 05:11:47,078:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:19; eventTime:2021-01-04 07:01:51.842856
+2023-10-23 05:11:47,087:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:19; eventTime:2021-01-04 07:01:51.842856
+2023-10-23 05:11:47,088:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:19; price:106.65; quantity:-1
+2023-10-23 05:11:47,093:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:19; price:106.65; quantity:-1
+2023-10-23 05:11:54,532:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 07:02:02.098846; instrumentId:1; bestBid:106.62; bestBidQuantity:7; bestAsk:106.63; bestAskQuantity:-1
+2023-10-23 05:11:54,536:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:20; eventTime:2021-01-04 07:02:02.098846
+2023-10-23 05:11:54,542:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:20; eventTime:2021-01-04 07:02:02.098846
+2023-10-23 05:11:54,544:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:20; price:106.62; quantity:-1
+2023-10-23 05:11:54,550:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:20; price:106.62; quantity:-1
+2023-10-23 05:12:00,347:SACCADE:INFO::Exchange:1 Received OBStatus:#OrderBookStatus: eventTime:2021-01-04 07:02:12.384688; instrumentId:1; bestBid:106.59; bestBidQuantity:7; bestAsk:106.61; bestAskQuantity:-9
+2023-10-23 05:12:00,351:SACCADE:INFO::Exchange:1 prepared ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:21; eventTime:2021-01-04 07:02:12.384688
+2023-10-23 05:12:00,357:SACCADE:INFO::Exchange:1 Sending packet:#ConfirmNew: orderManagerId:1; orderNumber:21; eventTime:2021-01-04 07:02:12.384688
+2023-10-23 05:12:00,361:SACCADE:INFO::Exchange:1 prepared Fill:#Fill: orderManagerId:1; orderNumber:21; price:106.59; quantity:-1
+2023-10-23 05:12:00,361:SACCADE:INFO::Exchange:1 Sending packet:#Fill: orderManagerId:1; orderNumber:21; price:106.59; quantity:-1
