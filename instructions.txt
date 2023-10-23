@@ -1,0 +1,36 @@
+Clone the repo into your folder, the files should be able to run on python versions >= 3.7
+Come to the present working directory where the src/ folder is there
+
+run:
+export PYTHONPATH=$(pwd)
+
+NOTE: for all the injectors, exchanges and strategy sockets, I have hard coded the Host (in class) and Port (in main()) so that it becomes easy.
+
+Once you are in the correct directory and python path is also set in the terminal --
+
+To run the basic_hit_stat.py: requires 5 different terminal sessions
+
+1. launch first exchange: session1
+python src/bin/infra/exchanges/exchangeSCH.py
+2. launch second exchange: session2
+python src/bin/infra/exchanges/exchangeSCS.py
+3. launch the strategy: session3
+python src/bin/markets/execution/basic_hit_strat.py
+4. launch first eventInjector: session4
+python src/bin/infra/events/injectorSCH.py
+5. launch second eventInjector: session5
+python src/bin/infra/events/injectorSCS.py 
+
+The strategy and both the exchanges start printing the logs. I have shared the sample logs for all three components, 2 exchanges and one strategy log files.
+
+
+To run the exercise.py: requires 3 different terminal sessions
+
+1. launch the exercise file TickListener: session1
+python src/bin/markets/execution/exercise.py
+2. launch first eventInjector: session2
+python src/bin/infra/events/injectorSCH.py
+3. launch second eventInjector: session3
+python src/bin/infra/events/injectorSCS.py
+
+After connecting to both the injectors, the injectors will start dispatching the ticks and the TickListener will listen, process into OrderBook and then prints it
