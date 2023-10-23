@@ -1,5 +1,6 @@
 # saccade_project
-Suggested to use a good IDE to review the code properly.
+Suggested to use a good IDE to review the code properly <br />
+Execution Instructions are in **instructions.txt** <br />
 
 # components
 
