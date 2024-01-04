@@ -3,9 +3,9 @@ Suggested to use a good IDE to review the code properly <br />
 Execution Instructions are in **instructions.txt** <br />
 # Note
 There are sample log files in this repo which are printed from the two virtual exchanges, and also the strategy (which communicates with two exchanges at a time, for two different tradables) <br />
-exchangeSCH_logsample.txt
-exchangeSCS_logsample.txt
-strategy_logsample.txt
+exchangeSCH_logsample.txt <br />
+exchangeSCS_logsample.txt <br />
+strategy_logsample.txt <br />
 
 The data using which this framework is built and ran is in a zip file.
 
