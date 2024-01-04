@@ -1,6 +1,7 @@
 # saccade
 Suggested to use a good IDE to review the code properly <br />
 Execution Instructions are in **instructions.txt** <br />
+The market data for two tradables (SCS and SCH) is in **mktdata.zip** <br />
 # Note
 There are sample log files in this repo which are printed from the two virtual exchanges, and also the strategy (which communicates with two exchanges at a time, for two different tradables) <br />
 exchangeSCH_logsample.txt <br />
