@@ -1,0 +1,10 @@
+This is a project to showcase my expertise and understanding of trading systems/frameworks in a high frequency trading domain.
+
+The code structure and flow is completely similar to what it would have been in C++ or Java.
+I have coded it in a similar way to C++, have not used the third party python libraries and extensively used the concepts of OOPs - classes, objects, function delegates, inheritance, etc.
+I have also tried to make sure of private and public variables at most places in all of my modules.
+
+Although the test signal "HiLo" which I designed, is giving profit in this strategy, I would have designed a more sophisticated signal, but it is not the objective of this project.
+More generalization of the infrastructure to further support multiple function delegates, multiple components of all kinds could have also been implemented.
+
+

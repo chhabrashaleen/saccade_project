@@ -1,0 +1,478 @@
+root@shaleenDell:/mnt/e/git/saccade_project# python src/bin/markets/execution/basic_hit_strat.py
+2023-10-23 05:07:18,828:SACCADE:INFO::#Connecting Dispatcher: OrderSendSCH:8080
+2023-10-23 05:07:18,829:SACCADE:INFO::#Connecting Dispatcher: OrderSendSCS:9000
+2023-10-23 05:07:18,831:SACCADE:INFO::Server listening on 127.0.0.1:8000
+2023-10-23 05:07:22,278:SACCADE:INFO::Accepted Connection from: ('127.0.0.1', 65119)
+2023-10-23 05:07:26,439:SACCADE:INFO::Accepted Connection from: ('127.0.0.1', 65120)
+2023-10-23 05:07:26,475:SACCADE:INFO::OrderBook Initialized Price:107.0
+2023-10-23 05:07:26,476:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:44:00.017829; instrumentId:1; bestBid:0; bestBidQuantity:0; bestAsk:107.0; bestAskQuantity:-20
+2023-10-23 05:07:26,705:SACCADE:INFO::OrderBook Initialized Price:272.27
+2023-10-23 05:07:26,706:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:44:00.027798; instrumentId:2; bestBid:0; bestBidQuantity:0; bestAsk:272.27; bestAskQuantity:-1
+2023-10-23 05:07:27,268:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:45:00.103920; instrumentId:1; bestBid:106.99; bestBidQuantity:3; bestAsk:107.0; bestAskQuantity:-20
+2023-10-23 05:07:27,269:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:45:00.103920; instrumentId:1; bestBid:106.99; bestBidQuantity:3; bestAsk:107.0; bestAskQuantity:-20
+2023-10-23 05:07:27,270:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:07:27,271:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:07:27,272:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:1; price:107.0; quantity:1
+2023-10-23 05:07:27,273:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:45:00.103920; instrumentId:1; bestBid:106.99; bestBidQuantity:3; bestAsk:107.0; bestAskQuantity:-20 #OrderNew: orderManagerId:1; orderNumber:1; price:107.0; quantity:1
+2023-10-23 05:07:27,275:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:07:27,286:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:1; eventTime:2021-01-04 06:45:00.103920
+2023-10-23 05:07:27,290:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:45:00.103920
+2023-10-23 05:07:27,293:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:1; price:107.0; quantity:1
+2023-10-23 05:07:27,294:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:45:00.103920 SCH_PNLENGINE 107.0 1 #Trade:SCH @( 107.0, 1, 2021-01-04 06:45:00.103920 )
+2023-10-23 05:07:27,295:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:0.0, ClosedPnl:0
+2023-10-23 05:07:27,296:SACCADE:INFO::This order got finished: #Order(1, 1)
+2023-10-23 05:07:27,301:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:45:00.104103; instrumentId:2; bestBid:272.22; bestBidQuantity:2; bestAsk:272.27; bestAskQuantity:-2
+2023-10-23 05:07:27,301:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:45:00.104103; instrumentId:2; bestBid:272.22; bestBidQuantity:2; bestAsk:272.27; bestAskQuantity:-2
+2023-10-23 05:07:27,308:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:07:27,309:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:07:27,310:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:1; price:272.27; quantity:1
+2023-10-23 05:07:27,310:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:45:00.104103; instrumentId:2; bestBid:272.22; bestBidQuantity:2; bestAsk:272.27; bestAskQuantity:-2 #OrderNew: orderManagerId:2; orderNumber:1; price:272.27; quantity:1
+2023-10-23 05:07:27,312:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:07:27,318:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:1; eventTime:2021-01-04 06:45:00.104103
+2023-10-23 05:07:27,322:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:45:00.104103
+2023-10-23 05:07:27,327:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:1; price:272.27; quantity:1
+2023-10-23 05:07:27,328:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:45:00.104103 SCS_PNLENGINE 272.27 1 #Trade:SCS @( 272.27, 1, 2021-01-04 06:45:00.104103 )
+2023-10-23 05:07:27,329:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:0.00, ClosedPnl:0
+2023-10-23 05:07:27,330:SACCADE:INFO::This order got finished: #Order(2, 1)
+2023-10-23 05:08:18,182:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:48:28.364335; instrumentId:2; bestBid:271.52; bestBidQuantity:1; bestAsk:271.540; bestAskQuantity:-2
+2023-10-23 05:08:18,182:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:48:28.364335; instrumentId:2; bestBid:271.52; bestBidQuantity:1; bestAsk:271.540; bestAskQuantity:-2
+2023-10-23 05:08:18,183:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:08:18,183:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:08:18,184:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:2; price:271.540; quantity:1
+2023-10-23 05:08:18,184:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:48:28.364335; instrumentId:2; bestBid:271.52; bestBidQuantity:1; bestAsk:271.540; bestAskQuantity:-2 #OrderNew: orderManagerId:2; orderNumber:2; price:271.540; quantity:1
+2023-10-23 05:08:18,185:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:08:18,187:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:2; eventTime:2021-01-04 06:48:28.364335
+2023-10-23 05:08:18,188:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:48:28.364335
+2023-10-23 05:08:18,188:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:2; price:271.540; quantity:1
+2023-10-23 05:08:18,188:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:48:28.364335 SCS_PNLENGINE 271.540 1 #Trade:SCS @( 271.540, 1, 2021-01-04 06:48:28.364335 )
+2023-10-23 05:08:18,189:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:-0.730, ClosedPnl:0
+2023-10-23 05:08:18,189:SACCADE:INFO::This order got finished: #Order(2, 2)
+2023-10-23 05:08:27,172:SACCADE:INFO::Try to get a Sell @:#OrderBookStatus: eventTime:2021-01-04 06:49:12.565667; instrumentId:1; bestBid:106.51; bestBidQuantity:4; bestAsk:106.52; bestAskQuantity:-1
+2023-10-23 05:08:27,172:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:49:12.565667; instrumentId:1; bestBid:106.51; bestBidQuantity:4; bestAsk:106.52; bestAskQuantity:-1
+2023-10-23 05:08:27,173:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:-1
+2023-10-23 05:08:27,174:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:08:27,175:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:2; price:106.51; quantity:-1
+2023-10-23 05:08:27,176:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:49:12.565667; instrumentId:1; bestBid:106.51; bestBidQuantity:4; bestAsk:106.52; bestAskQuantity:-1 #OrderNew: orderManagerId:1; orderNumber:2; price:106.51; quantity:-1
+2023-10-23 05:08:27,178:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:08:27,181:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:2; eventTime:2021-01-04 06:49:12.565667
+2023-10-23 05:08:27,182:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:49:12.565667
+2023-10-23 05:08:27,183:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:2; price:106.51; quantity:-1
+2023-10-23 05:08:27,183:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:49:12.565667 SCH_PNLENGINE 106.51 -1 #Trade:SCH @( 106.51, -1, 2021-01-04 06:49:12.565667 )
+2023-10-23 05:08:27,184:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.49, ClosedPnl:0
+2023-10-23 05:08:27,185:SACCADE:INFO::This order got finished: #Order(1, 2)
+2023-10-23 05:09:06,821:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:52:47.219752; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-4
+2023-10-23 05:09:06,822:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:52:47.219752; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-4
+2023-10-23 05:09:06,823:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:06,824:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:06,825:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:3; price:106.65; quantity:1
+2023-10-23 05:09:06,826:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:52:47.219752; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-4 #OrderNew: orderManagerId:1; orderNumber:3; price:106.65; quantity:1
+2023-10-23 05:09:06,827:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:06,831:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:3; eventTime:2021-01-04 06:52:47.219752
+2023-10-23 05:09:06,831:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:52:47.219752
+2023-10-23 05:09:06,833:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:3; price:106.65; quantity:1
+2023-10-23 05:09:06,834:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:52:47.219752 SCH_PNLENGINE 106.65 1 #Trade:SCH @( 106.65, 1, 2021-01-04 06:52:47.219752 )
+2023-10-23 05:09:06,835:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.49, ClosedPnl:0
+2023-10-23 05:09:06,835:SACCADE:INFO::This order got finished: #Order(1, 3)
+2023-10-23 05:09:07,951:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:52:57.250830; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-4
+2023-10-23 05:09:07,952:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:52:57.250830; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-4
+2023-10-23 05:09:07,953:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:07,954:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:07,955:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:4; price:106.65; quantity:1
+2023-10-23 05:09:07,956:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:52:57.250830; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-4 #OrderNew: orderManagerId:1; orderNumber:4; price:106.65; quantity:1
+2023-10-23 05:09:07,957:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:07,961:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:4; eventTime:2021-01-04 06:52:57.250830
+2023-10-23 05:09:07,961:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:52:57.250830
+2023-10-23 05:09:07,963:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:4; price:106.65; quantity:1
+2023-10-23 05:09:07,964:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:52:57.250830 SCH_PNLENGINE 106.65 1 #Trade:SCH @( 106.65, 1, 2021-01-04 06:52:57.250830 )
+2023-10-23 05:09:07,966:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.49, ClosedPnl:0
+2023-10-23 05:09:07,967:SACCADE:INFO::This order got finished: #Order(1, 4)
+2023-10-23 05:09:10,372:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:53:12.631395; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-6
+2023-10-23 05:09:10,373:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:53:12.631395; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-6
+2023-10-23 05:09:10,374:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:10,375:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:10,376:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:5; price:106.65; quantity:1
+2023-10-23 05:09:10,376:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:53:12.631395; instrumentId:1; bestBid:106.64; bestBidQuantity:1; bestAsk:106.65; bestAskQuantity:-6 #OrderNew: orderManagerId:1; orderNumber:5; price:106.65; quantity:1
+2023-10-23 05:09:10,378:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:10,381:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:5; eventTime:2021-01-04 06:53:12.631395
+2023-10-23 05:09:10,382:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:53:12.631395
+2023-10-23 05:09:10,383:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:5; price:106.65; quantity:1
+2023-10-23 05:09:10,383:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:53:12.631395 SCH_PNLENGINE 106.65 1 #Trade:SCH @( 106.65, 1, 2021-01-04 06:53:12.631395 )
+2023-10-23 05:09:10,384:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.49, ClosedPnl:0
+2023-10-23 05:09:10,385:SACCADE:INFO::This order got finished: #Order(1, 5)
+2023-10-23 05:09:12,278:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:53:23.370524; instrumentId:1; bestBid:106.64; bestBidQuantity:5; bestAsk:106.65; bestAskQuantity:-8
+2023-10-23 05:09:12,279:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:53:23.370524; instrumentId:1; bestBid:106.64; bestBidQuantity:5; bestAsk:106.65; bestAskQuantity:-8
+2023-10-23 05:09:12,281:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:12,282:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:12,283:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:6; price:106.65; quantity:1
+2023-10-23 05:09:12,284:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:53:23.370524; instrumentId:1; bestBid:106.64; bestBidQuantity:5; bestAsk:106.65; bestAskQuantity:-8 #OrderNew: orderManagerId:1; orderNumber:6; price:106.65; quantity:1
+2023-10-23 05:09:12,287:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:12,304:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:6; eventTime:2021-01-04 06:53:23.370524
+2023-10-23 05:09:12,305:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:53:23.370524
+2023-10-23 05:09:12,309:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:6; price:106.65; quantity:1
+2023-10-23 05:09:12,309:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:53:23.370524 SCH_PNLENGINE 106.65 1 #Trade:SCH @( 106.65, 1, 2021-01-04 06:53:23.370524 )
+2023-10-23 05:09:12,311:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.49, ClosedPnl:0
+2023-10-23 05:09:12,312:SACCADE:INFO::This order got finished: #Order(1, 6)
+2023-10-23 05:09:14,004:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:53:35.200011; instrumentId:1; bestBid:106.64; bestBidQuantity:5; bestAsk:106.65; bestAskQuantity:-11
+2023-10-23 05:09:14,005:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:53:35.200011; instrumentId:1; bestBid:106.64; bestBidQuantity:5; bestAsk:106.65; bestAskQuantity:-11
+2023-10-23 05:09:14,006:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:14,007:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:14,007:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:7; price:106.65; quantity:1
+2023-10-23 05:09:14,008:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:53:35.200011; instrumentId:1; bestBid:106.64; bestBidQuantity:5; bestAsk:106.65; bestAskQuantity:-11 #OrderNew: orderManagerId:1; orderNumber:7; price:106.65; quantity:1
+2023-10-23 05:09:14,010:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:14,022:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:7; eventTime:2021-01-04 06:53:35.200011
+2023-10-23 05:09:14,028:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:53:35.200011
+2023-10-23 05:09:14,031:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:7; price:106.65; quantity:1
+2023-10-23 05:09:14,033:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:53:35.200011 SCH_PNLENGINE 106.65 1 #Trade:SCH @( 106.65, 1, 2021-01-04 06:53:35.200011 )
+2023-10-23 05:09:14,035:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.49, ClosedPnl:0
+2023-10-23 05:09:14,039:SACCADE:INFO::This order got finished: #Order(1, 7)
+2023-10-23 05:09:15,411:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:53:45.206161; instrumentId:1; bestBid:106.66; bestBidQuantity:6; bestAsk:106.67; bestAskQuantity:-4
+2023-10-23 05:09:15,412:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:53:45.206161; instrumentId:1; bestBid:106.66; bestBidQuantity:6; bestAsk:106.67; bestAskQuantity:-4
+2023-10-23 05:09:15,413:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:15,415:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:15,416:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:8; price:106.67; quantity:1
+2023-10-23 05:09:15,417:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:53:45.206161; instrumentId:1; bestBid:106.66; bestBidQuantity:6; bestAsk:106.67; bestAskQuantity:-4 #OrderNew: orderManagerId:1; orderNumber:8; price:106.67; quantity:1
+2023-10-23 05:09:15,419:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:15,431:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:8; eventTime:2021-01-04 06:53:45.206161
+2023-10-23 05:09:15,432:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:53:45.206161
+2023-10-23 05:09:15,439:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:8; price:106.67; quantity:1
+2023-10-23 05:09:15,439:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:53:45.206161 SCH_PNLENGINE 106.67 1 #Trade:SCH @( 106.67, 1, 2021-01-04 06:53:45.206161 )
+2023-10-23 05:09:15,441:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.39, ClosedPnl:0
+2023-10-23 05:09:15,443:SACCADE:INFO::This order got finished: #Order(1, 8)
+2023-10-23 05:09:16,878:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:53:55.727472; instrumentId:1; bestBid:106.7; bestBidQuantity:11; bestAsk:106.72; bestAskQuantity:-8
+2023-10-23 05:09:16,879:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:53:55.727472; instrumentId:1; bestBid:106.7; bestBidQuantity:11; bestAsk:106.72; bestAskQuantity:-8
+2023-10-23 05:09:16,880:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:16,881:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:16,882:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:9; price:106.72; quantity:1
+2023-10-23 05:09:16,882:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:53:55.727472; instrumentId:1; bestBid:106.7; bestBidQuantity:11; bestAsk:106.72; bestAskQuantity:-8 #OrderNew: orderManagerId:1; orderNumber:9; price:106.72; quantity:1
+2023-10-23 05:09:16,884:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:16,899:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:9; eventTime:2021-01-04 06:53:55.727472
+2023-10-23 05:09:16,901:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:53:55.727472
+2023-10-23 05:09:16,906:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:9; price:106.72; quantity:1
+2023-10-23 05:09:16,908:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:53:55.727472 SCH_PNLENGINE 106.72 1 #Trade:SCH @( 106.72, 1, 2021-01-04 06:53:55.727472 )
+2023-10-23 05:09:16,908:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.09, ClosedPnl:0
+2023-10-23 05:09:16,909:SACCADE:INFO::This order got finished: #Order(1, 9)
+2023-10-23 05:09:16,942:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:53:56.882683; instrumentId:2; bestBid:271.41; bestBidQuantity:1; bestAsk:271.43; bestAskQuantity:-4
+2023-10-23 05:09:16,942:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:53:56.882683; instrumentId:2; bestBid:271.41; bestBidQuantity:1; bestAsk:271.43; bestAskQuantity:-4
+2023-10-23 05:09:16,943:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:16,944:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:16,945:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:3; price:271.43; quantity:1
+2023-10-23 05:09:16,946:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:53:56.882683; instrumentId:2; bestBid:271.41; bestBidQuantity:1; bestAsk:271.43; bestAskQuantity:-4 #OrderNew: orderManagerId:2; orderNumber:3; price:271.43; quantity:1
+2023-10-23 05:09:16,948:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:16,952:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:3; eventTime:2021-01-04 06:53:56.882683
+2023-10-23 05:09:16,952:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:53:56.882683
+2023-10-23 05:09:16,953:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:3; price:271.43; quantity:1
+2023-10-23 05:09:16,954:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:53:56.882683 SCS_PNLENGINE 271.43 1 #Trade:SCS @( 271.43, 1, 2021-01-04 06:53:56.882683 )
+2023-10-23 05:09:16,955:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:-0.950, ClosedPnl:0
+2023-10-23 05:09:16,956:SACCADE:INFO::This order got finished: #Order(2, 3)
+2023-10-23 05:09:18,723:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:05.888054; instrumentId:1; bestBid:106.70; bestBidQuantity:7; bestAsk:106.72; bestAskQuantity:-9
+2023-10-23 05:09:18,724:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:05.888054; instrumentId:1; bestBid:106.70; bestBidQuantity:7; bestAsk:106.72; bestAskQuantity:-9
+2023-10-23 05:09:18,725:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:18,726:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:18,727:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:10; price:106.72; quantity:1
+2023-10-23 05:09:18,728:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:05.888054; instrumentId:1; bestBid:106.70; bestBidQuantity:7; bestAsk:106.72; bestAskQuantity:-9 #OrderNew: orderManagerId:1; orderNumber:10; price:106.72; quantity:1
+2023-10-23 05:09:18,730:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:18,745:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:10; eventTime:2021-01-04 06:54:05.888054
+2023-10-23 05:09:18,746:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:54:05.888054
+2023-10-23 05:09:18,748:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:10; price:106.72; quantity:1
+2023-10-23 05:09:18,749:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:05.888054 SCH_PNLENGINE 106.72 1 #Trade:SCH @( 106.72, 1, 2021-01-04 06:54:05.888054 )
+2023-10-23 05:09:18,750:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.09, ClosedPnl:0
+2023-10-23 05:09:18,750:SACCADE:INFO::This order got finished: #Order(1, 10)
+2023-10-23 05:09:19,051:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:07.053361; instrumentId:2; bestBid:271.43; bestBidQuantity:1; bestAsk:271.44; bestAskQuantity:-1
+2023-10-23 05:09:19,052:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:07.053361; instrumentId:2; bestBid:271.43; bestBidQuantity:1; bestAsk:271.44; bestAskQuantity:-1
+2023-10-23 05:09:19,053:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:19,054:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:19,055:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:4; price:271.44; quantity:1
+2023-10-23 05:09:19,056:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:07.053361; instrumentId:2; bestBid:271.43; bestBidQuantity:1; bestAsk:271.44; bestAskQuantity:-1 #OrderNew: orderManagerId:2; orderNumber:4; price:271.44; quantity:1
+2023-10-23 05:09:19,057:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:19,061:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:4; eventTime:2021-01-04 06:54:07.053361
+2023-10-23 05:09:19,061:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:54:07.053361
+2023-10-23 05:09:19,063:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:4; price:271.44; quantity:1
+2023-10-23 05:09:19,064:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:07.053361 SCS_PNLENGINE 271.44 1 #Trade:SCS @( 271.44, 1, 2021-01-04 06:54:07.053361 )
+2023-10-23 05:09:19,065:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:-0.920, ClosedPnl:0
+2023-10-23 05:09:19,066:SACCADE:INFO::This order got finished: #Order(2, 4)
+2023-10-23 05:09:20,774:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:17.206686; instrumentId:2; bestBid:271.460; bestBidQuantity:2; bestAsk:271.480; bestAskQuantity:-3
+2023-10-23 05:09:20,775:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:17.206686; instrumentId:2; bestBid:271.460; bestBidQuantity:2; bestAsk:271.480; bestAskQuantity:-3
+2023-10-23 05:09:20,776:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:20,777:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:20,778:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:5; price:271.480; quantity:1
+2023-10-23 05:09:20,779:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:17.206686; instrumentId:2; bestBid:271.460; bestBidQuantity:2; bestAsk:271.480; bestAskQuantity:-3 #OrderNew: orderManagerId:2; orderNumber:5; price:271.480; quantity:1
+2023-10-23 05:09:20,780:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:20,783:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:5; eventTime:2021-01-04 06:54:17.206686
+2023-10-23 05:09:20,784:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:54:17.206686
+2023-10-23 05:09:20,786:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:5; price:271.480; quantity:1
+2023-10-23 05:09:20,788:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:17.206686 SCS_PNLENGINE 271.480 1 #Trade:SCS @( 271.480, 1, 2021-01-04 06:54:17.206686 )
+2023-10-23 05:09:20,789:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:-0.760, ClosedPnl:0
+2023-10-23 05:09:20,790:SACCADE:INFO::This order got finished: #Order(2, 5)
+2023-10-23 05:09:20,827:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:17.444625; instrumentId:1; bestBid:106.72; bestBidQuantity:1; bestAsk:106.73; bestAskQuantity:-6
+2023-10-23 05:09:20,828:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:17.444625; instrumentId:1; bestBid:106.72; bestBidQuantity:1; bestAsk:106.73; bestAskQuantity:-6
+2023-10-23 05:09:20,829:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:20,829:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:20,830:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:11; price:106.73; quantity:1
+2023-10-23 05:09:20,831:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:17.444625; instrumentId:1; bestBid:106.72; bestBidQuantity:1; bestAsk:106.73; bestAskQuantity:-6 #OrderNew: orderManagerId:1; orderNumber:11; price:106.73; quantity:1
+2023-10-23 05:09:20,833:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:20,845:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:11; eventTime:2021-01-04 06:54:17.444625
+2023-10-23 05:09:20,846:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:54:17.444625
+2023-10-23 05:09:20,853:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:11; price:106.73; quantity:1
+2023-10-23 05:09:20,854:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:17.444625 SCH_PNLENGINE 106.73 1 #Trade:SCH @( 106.73, 1, 2021-01-04 06:54:17.444625 )
+2023-10-23 05:09:20,854:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.01, ClosedPnl:0
+2023-10-23 05:09:20,856:SACCADE:INFO::This order got finished: #Order(1, 11)
+2023-10-23 05:09:22,128:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:27.618959; instrumentId:1; bestBid:106.72; bestBidQuantity:7; bestAsk:106.74; bestAskQuantity:-9
+2023-10-23 05:09:22,129:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:27.618959; instrumentId:1; bestBid:106.72; bestBidQuantity:7; bestAsk:106.74; bestAskQuantity:-9
+2023-10-23 05:09:22,130:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:22,131:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:22,132:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:12; price:106.74; quantity:1
+2023-10-23 05:09:22,133:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:27.618959; instrumentId:1; bestBid:106.72; bestBidQuantity:7; bestAsk:106.74; bestAskQuantity:-9 #OrderNew: orderManagerId:1; orderNumber:12; price:106.74; quantity:1
+2023-10-23 05:09:22,134:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:22,147:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:12; eventTime:2021-01-04 06:54:27.618959
+2023-10-23 05:09:22,148:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:54:27.618959
+2023-10-23 05:09:22,155:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:12; price:106.74; quantity:1
+2023-10-23 05:09:22,156:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:27.618959 SCH_PNLENGINE 106.74 1 #Trade:SCH @( 106.74, 1, 2021-01-04 06:54:27.618959 )
+2023-10-23 05:09:22,157:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:0.08, ClosedPnl:0
+2023-10-23 05:09:22,159:SACCADE:INFO::This order got finished: #Order(1, 12)
+2023-10-23 05:09:22,716:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:32.147131; instrumentId:2; bestBid:271.46; bestBidQuantity:2; bestAsk:271.480; bestAskQuantity:-4
+2023-10-23 05:09:22,717:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:32.147131; instrumentId:2; bestBid:271.46; bestBidQuantity:2; bestAsk:271.480; bestAskQuantity:-4
+2023-10-23 05:09:22,718:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:22,719:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:22,720:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:6; price:271.480; quantity:1
+2023-10-23 05:09:22,721:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:32.147131; instrumentId:2; bestBid:271.46; bestBidQuantity:2; bestAsk:271.480; bestAskQuantity:-4 #OrderNew: orderManagerId:2; orderNumber:6; price:271.480; quantity:1
+2023-10-23 05:09:22,723:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:22,737:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:6; eventTime:2021-01-04 06:54:32.147131
+2023-10-23 05:09:22,738:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:54:32.147131
+2023-10-23 05:09:22,744:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:6; price:271.480; quantity:1
+2023-10-23 05:09:22,745:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:32.147131 SCS_PNLENGINE 271.480 1 #Trade:SCS @( 271.480, 1, 2021-01-04 06:54:32.147131 )
+2023-10-23 05:09:22,746:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:-0.760, ClosedPnl:0
+2023-10-23 05:09:22,747:SACCADE:INFO::This order got finished: #Order(2, 6)
+2023-10-23 05:09:23,269:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:37.840474; instrumentId:1; bestBid:106.74; bestBidQuantity:8; bestAsk:106.76; bestAskQuantity:-12
+2023-10-23 05:09:23,270:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:37.840474; instrumentId:1; bestBid:106.74; bestBidQuantity:8; bestAsk:106.76; bestAskQuantity:-12
+2023-10-23 05:09:23,271:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:23,272:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:23,273:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:13; price:106.76; quantity:1
+2023-10-23 05:09:23,274:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:37.840474; instrumentId:1; bestBid:106.74; bestBidQuantity:8; bestAsk:106.76; bestAskQuantity:-12 #OrderNew: orderManagerId:1; orderNumber:13; price:106.76; quantity:1
+2023-10-23 05:09:23,275:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:23,287:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:13; eventTime:2021-01-04 06:54:37.840474
+2023-10-23 05:09:23,288:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:54:37.840474
+2023-10-23 05:09:23,294:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:13; price:106.76; quantity:1
+2023-10-23 05:09:23,295:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:37.840474 SCH_PNLENGINE 106.76 1 #Trade:SCH @( 106.76, 1, 2021-01-04 06:54:37.840474 )
+2023-10-23 05:09:23,295:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:0.28, ClosedPnl:0
+2023-10-23 05:09:23,297:SACCADE:INFO::This order got finished: #Order(1, 13)
+2023-10-23 05:09:24,172:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:42.221900; instrumentId:2; bestBid:271.460; bestBidQuantity:5; bestAsk:271.490; bestAskQuantity:-1
+2023-10-23 05:09:24,172:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:42.221900; instrumentId:2; bestBid:271.460; bestBidQuantity:5; bestAsk:271.490; bestAskQuantity:-1
+2023-10-23 05:09:24,173:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:24,174:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:24,175:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:7; price:271.490; quantity:1
+2023-10-23 05:09:24,176:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:42.221900; instrumentId:2; bestBid:271.460; bestBidQuantity:5; bestAsk:271.490; bestAskQuantity:-1 #OrderNew: orderManagerId:2; orderNumber:7; price:271.490; quantity:1
+2023-10-23 05:09:24,178:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:24,192:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:7; eventTime:2021-01-04 06:54:42.221900
+2023-10-23 05:09:24,194:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:54:42.221900
+2023-10-23 05:09:24,200:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:7; price:271.490; quantity:1
+2023-10-23 05:09:24,202:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:42.221900 SCS_PNLENGINE 271.490 1 #Trade:SCS @( 271.490, 1, 2021-01-04 06:54:42.221900 )
+2023-10-23 05:09:24,203:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:-0.700, ClosedPnl:0
+2023-10-23 05:09:24,209:SACCADE:INFO::This order got finished: #Order(2, 7)
+2023-10-23 05:09:26,977:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:48.359027; instrumentId:1; bestBid:106.8; bestBidQuantity:1; bestAsk:106.81; bestAskQuantity:-4
+2023-10-23 05:09:26,978:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:48.359027; instrumentId:1; bestBid:106.8; bestBidQuantity:1; bestAsk:106.81; bestAskQuantity:-4
+2023-10-23 05:09:26,979:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:26,980:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:26,981:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:14; price:106.81; quantity:1
+2023-10-23 05:09:26,982:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:48.359027; instrumentId:1; bestBid:106.8; bestBidQuantity:1; bestAsk:106.81; bestAskQuantity:-4 #OrderNew: orderManagerId:1; orderNumber:14; price:106.81; quantity:1
+2023-10-23 05:09:26,984:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:26,994:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:14; eventTime:2021-01-04 06:54:48.359027
+2023-10-23 05:09:26,995:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:54:48.359027
+2023-10-23 05:09:27,002:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:14; price:106.81; quantity:1
+2023-10-23 05:09:27,002:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:48.359027 SCH_PNLENGINE 106.81 1 #Trade:SCH @( 106.81, 1, 2021-01-04 06:54:48.359027 )
+2023-10-23 05:09:27,003:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:0.83, ClosedPnl:0
+2023-10-23 05:09:27,005:SACCADE:INFO::This order got finished: #Order(1, 14)
+2023-10-23 05:09:28,094:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:52.326248; instrumentId:2; bestBid:271.6; bestBidQuantity:1; bestAsk:271.61; bestAskQuantity:-1
+2023-10-23 05:09:28,095:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:52.326248; instrumentId:2; bestBid:271.6; bestBidQuantity:1; bestAsk:271.61; bestAskQuantity:-1
+2023-10-23 05:09:28,098:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:28,099:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:28,100:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:8; price:271.61; quantity:1
+2023-10-23 05:09:28,100:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:52.326248; instrumentId:2; bestBid:271.6; bestBidQuantity:1; bestAsk:271.61; bestAskQuantity:-1 #OrderNew: orderManagerId:2; orderNumber:8; price:271.61; quantity:1
+2023-10-23 05:09:28,103:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:28,115:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:8; eventTime:2021-01-04 06:54:52.326248
+2023-10-23 05:09:28,116:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:54:52.326248
+2023-10-23 05:09:28,120:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:8; price:271.61; quantity:1
+2023-10-23 05:09:28,123:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:52.326248 SCS_PNLENGINE 271.61 1 #Trade:SCS @( 271.61, 1, 2021-01-04 06:54:52.326248 )
+2023-10-23 05:09:28,129:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:0.140, ClosedPnl:0
+2023-10-23 05:09:28,136:SACCADE:INFO::This order got finished: #Order(2, 8)
+2023-10-23 05:09:28,937:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:54:58.494287; instrumentId:1; bestBid:106.80; bestBidQuantity:5; bestAsk:106.81; bestAskQuantity:-5
+2023-10-23 05:09:28,938:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:54:58.494287; instrumentId:1; bestBid:106.80; bestBidQuantity:5; bestAsk:106.81; bestAskQuantity:-5
+2023-10-23 05:09:28,939:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:09:28,940:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:09:28,941:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:15; price:106.81; quantity:1
+2023-10-23 05:09:28,942:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:54:58.494287; instrumentId:1; bestBid:106.80; bestBidQuantity:5; bestAsk:106.81; bestAskQuantity:-5 #OrderNew: orderManagerId:1; orderNumber:15; price:106.81; quantity:1
+2023-10-23 05:09:28,943:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:09:28,956:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:15; eventTime:2021-01-04 06:54:58.494287
+2023-10-23 05:09:28,958:SACCADE:INFO::#SCH:Order placed at @2021-01-04 06:54:58.494287
+2023-10-23 05:09:28,963:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:15; price:106.81; quantity:1
+2023-10-23 05:09:28,965:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:54:58.494287 SCH_PNLENGINE 106.81 1 #Trade:SCH @( 106.81, 1, 2021-01-04 06:54:58.494287 )
+2023-10-23 05:09:28,966:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:0.83, ClosedPnl:0
+2023-10-23 05:09:28,967:SACCADE:INFO::This order got finished: #Order(1, 15)
+2023-10-23 05:09:30,331:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:55:02.355892; instrumentId:2; bestBid:271.680; bestBidQuantity:2; bestAsk:271.700; bestAskQuantity:-1
+2023-10-23 05:09:30,331:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:55:02.355892; instrumentId:2; bestBid:271.680; bestBidQuantity:2; bestAsk:271.700; bestAskQuantity:-1
+2023-10-23 05:09:30,332:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:30,333:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:30,334:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:9; price:271.700; quantity:1
+2023-10-23 05:09:30,335:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:55:02.355892; instrumentId:2; bestBid:271.680; bestBidQuantity:2; bestAsk:271.700; bestAskQuantity:-1 #OrderNew: orderManagerId:2; orderNumber:9; price:271.700; quantity:1
+2023-10-23 05:09:30,337:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:30,347:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:9; eventTime:2021-01-04 06:55:02.355892
+2023-10-23 05:09:30,348:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:55:02.355892
+2023-10-23 05:09:30,355:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:9; price:271.700; quantity:1
+2023-10-23 05:09:30,356:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:55:02.355892 SCS_PNLENGINE 271.700 1 #Trade:SCS @( 271.700, 1, 2021-01-04 06:55:02.355892 )
+2023-10-23 05:09:30,357:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:0.860, ClosedPnl:0
+2023-10-23 05:09:30,358:SACCADE:INFO::This order got finished: #Order(2, 9)
+2023-10-23 05:09:34,815:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:55:12.800760; instrumentId:2; bestBid:271.760; bestBidQuantity:3; bestAsk:271.78; bestAskQuantity:-2
+2023-10-23 05:09:34,816:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:55:12.800760; instrumentId:2; bestBid:271.760; bestBidQuantity:3; bestAsk:271.78; bestAskQuantity:-2
+2023-10-23 05:09:34,817:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:34,818:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:34,819:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:10; price:271.78; quantity:1
+2023-10-23 05:09:34,820:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:55:12.800760; instrumentId:2; bestBid:271.760; bestBidQuantity:3; bestAsk:271.78; bestAskQuantity:-2 #OrderNew: orderManagerId:2; orderNumber:10; price:271.78; quantity:1
+2023-10-23 05:09:34,821:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:34,836:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:10; eventTime:2021-01-04 06:55:12.800760
+2023-10-23 05:09:34,836:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:55:12.800760
+2023-10-23 05:09:34,843:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:10; price:271.78; quantity:1
+2023-10-23 05:09:34,845:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:55:12.800760 SCS_PNLENGINE 271.78 1 #Trade:SCS @( 271.78, 1, 2021-01-04 06:55:12.800760 )
+2023-10-23 05:09:34,847:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:1.580, ClosedPnl:0
+2023-10-23 05:09:34,854:SACCADE:INFO::This order got finished: #Order(2, 10)
+2023-10-23 05:09:46,517:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 06:56:00.208007; instrumentId:2; bestBid:271.77; bestBidQuantity:2; bestAsk:271.790; bestAskQuantity:-2
+2023-10-23 05:09:46,517:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 06:56:00.208007; instrumentId:2; bestBid:271.77; bestBidQuantity:2; bestAsk:271.790; bestAskQuantity:-2
+2023-10-23 05:09:46,518:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:09:46,519:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:09:46,520:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:11; price:271.790; quantity:1
+2023-10-23 05:09:46,521:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 06:56:00.208007; instrumentId:2; bestBid:271.77; bestBidQuantity:2; bestAsk:271.790; bestAskQuantity:-2 #OrderNew: orderManagerId:2; orderNumber:11; price:271.790; quantity:1
+2023-10-23 05:09:46,522:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:09:46,537:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:11; eventTime:2021-01-04 06:56:00.208007
+2023-10-23 05:09:46,539:SACCADE:INFO::#SCS:Order placed at @2021-01-04 06:56:00.208007
+2023-10-23 05:09:46,542:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:11; price:271.790; quantity:1
+2023-10-23 05:09:46,544:SACCADE:INFO::#PNL_TRADE: 2021-01-04 06:56:00.208007 SCS_PNLENGINE 271.790 1 #Trade:SCS @( 271.790, 1, 2021-01-04 06:56:00.208007 )
+2023-10-23 05:09:46,545:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:1.680, ClosedPnl:0
+2023-10-23 05:09:46,546:SACCADE:INFO::This order got finished: #Order(2, 11)
+2023-10-23 05:10:26,832:SACCADE:INFO::Try to get a Sell @:#OrderBookStatus: eventTime:2021-01-04 07:00:02.502098; instrumentId:1; bestBid:106.67; bestBidQuantity:6; bestAsk:106.68; bestAskQuantity:-1
+2023-10-23 05:10:26,833:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:00:02.502098; instrumentId:1; bestBid:106.67; bestBidQuantity:6; bestAsk:106.68; bestAskQuantity:-1
+2023-10-23 05:10:26,833:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:-1
+2023-10-23 05:10:26,834:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:10:26,834:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:16; price:106.67; quantity:-1
+2023-10-23 05:10:26,835:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:00:02.502098; instrumentId:1; bestBid:106.67; bestBidQuantity:6; bestAsk:106.68; bestAskQuantity:-1 #OrderNew: orderManagerId:1; orderNumber:16; price:106.67; quantity:-1
+2023-10-23 05:10:26,835:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:10:26,842:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:16; eventTime:2021-01-04 07:00:02.502098
+2023-10-23 05:10:26,843:SACCADE:INFO::#SCH:Order placed at @2021-01-04 07:00:02.502098
+2023-10-23 05:10:26,844:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:16; price:106.67; quantity:-1
+2023-10-23 05:10:26,845:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:00:02.502098 SCH_PNLENGINE 106.67 -1 #Trade:SCH @( 106.67, -1, 2021-01-04 07:00:02.502098 )
+2023-10-23 05:10:26,845:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-0.99, ClosedPnl:0
+2023-10-23 05:10:26,845:SACCADE:INFO::This order got finished: #Order(1, 16)
+2023-10-23 05:10:31,362:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 07:00:07.730636; instrumentId:2; bestBid:271.77; bestBidQuantity:2; bestAsk:271.790; bestAskQuantity:-8
+2023-10-23 05:10:31,363:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:00:07.730636; instrumentId:2; bestBid:271.77; bestBidQuantity:2; bestAsk:271.790; bestAskQuantity:-8
+2023-10-23 05:10:31,364:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:10:31,364:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:10:31,364:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:12; price:271.790; quantity:1
+2023-10-23 05:10:31,365:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:00:07.730636; instrumentId:2; bestBid:271.77; bestBidQuantity:2; bestAsk:271.790; bestAskQuantity:-8 #OrderNew: orderManagerId:2; orderNumber:12; price:271.790; quantity:1
+2023-10-23 05:10:31,365:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:10:31,374:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:12; eventTime:2021-01-04 07:00:07.730636
+2023-10-23 05:10:31,375:SACCADE:INFO::#SCS:Order placed at @2021-01-04 07:00:07.730636
+2023-10-23 05:10:31,378:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:12; price:271.790; quantity:1
+2023-10-23 05:10:31,378:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:00:07.730636 SCS_PNLENGINE 271.790 1 #Trade:SCS @( 271.790, 1, 2021-01-04 07:00:07.730636 )
+2023-10-23 05:10:31,379:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:1.680, ClosedPnl:0
+2023-10-23 05:10:31,382:SACCADE:INFO::This order got finished: #Order(2, 12)
+2023-10-23 05:10:38,088:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 07:00:13.177731; instrumentId:1; bestBid:106.85; bestBidQuantity:1; bestAsk:106.86; bestAskQuantity:-5
+2023-10-23 05:10:38,089:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:00:13.177731; instrumentId:1; bestBid:106.85; bestBidQuantity:1; bestAsk:106.86; bestAskQuantity:-5
+2023-10-23 05:10:38,090:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:1
+2023-10-23 05:10:38,091:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:10:38,092:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:17; price:106.86; quantity:1
+2023-10-23 05:10:38,093:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:00:13.177731; instrumentId:1; bestBid:106.85; bestBidQuantity:1; bestAsk:106.86; bestAskQuantity:-5 #OrderNew: orderManagerId:1; orderNumber:17; price:106.86; quantity:1
+2023-10-23 05:10:38,095:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:10:38,105:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:17; eventTime:2021-01-04 07:00:13.177731
+2023-10-23 05:10:38,107:SACCADE:INFO::#SCH:Order placed at @2021-01-04 07:00:13.177731
+2023-10-23 05:10:38,112:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:17; price:106.86; quantity:1
+2023-10-23 05:10:38,113:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:00:13.177731 SCH_PNLENGINE 106.86 1 #Trade:SCH @( 106.86, 1, 2021-01-04 07:00:13.177731 )
+2023-10-23 05:10:38,114:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:1.29, ClosedPnl:0
+2023-10-23 05:10:38,115:SACCADE:INFO::This order got finished: #Order(1, 17)
+2023-10-23 05:10:41,789:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 07:00:17.913595; instrumentId:2; bestBid:272.11; bestBidQuantity:1; bestAsk:272.130; bestAskQuantity:-3
+2023-10-23 05:10:41,790:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:00:17.913595; instrumentId:2; bestBid:272.11; bestBidQuantity:1; bestAsk:272.130; bestAskQuantity:-3
+2023-10-23 05:10:41,791:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:10:41,792:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:10:41,793:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:13; price:272.130; quantity:1
+2023-10-23 05:10:41,794:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:00:17.913595; instrumentId:2; bestBid:272.11; bestBidQuantity:1; bestAsk:272.130; bestAskQuantity:-3 #OrderNew: orderManagerId:2; orderNumber:13; price:272.130; quantity:1
+2023-10-23 05:10:41,795:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:10:41,807:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:13; eventTime:2021-01-04 07:00:17.913595
+2023-10-23 05:10:41,813:SACCADE:INFO::#SCS:Order placed at @2021-01-04 07:00:17.913595
+2023-10-23 05:10:41,816:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:13; price:272.130; quantity:1
+2023-10-23 05:10:41,818:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:00:17.913595 SCS_PNLENGINE 272.130 1 #Trade:SCS @( 272.130, 1, 2021-01-04 07:00:17.913595 )
+2023-10-23 05:10:41,819:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:5.760, ClosedPnl:0
+2023-10-23 05:10:41,819:SACCADE:INFO::This order got finished: #Order(2, 13)
+2023-10-23 05:11:06,904:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 07:01:00.380685; instrumentId:2; bestBid:272.11; bestBidQuantity:3; bestAsk:272.130; bestAskQuantity:-4
+2023-10-23 05:11:06,905:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:01:00.380685; instrumentId:2; bestBid:272.11; bestBidQuantity:3; bestAsk:272.130; bestAskQuantity:-4
+2023-10-23 05:11:06,905:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:11:06,906:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:11:06,906:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:14; price:272.130; quantity:1
+2023-10-23 05:11:06,907:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:01:00.380685; instrumentId:2; bestBid:272.11; bestBidQuantity:3; bestAsk:272.130; bestAskQuantity:-4 #OrderNew: orderManagerId:2; orderNumber:14; price:272.130; quantity:1
+2023-10-23 05:11:06,909:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:11:06,920:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:14; eventTime:2021-01-04 07:01:00.380685
+2023-10-23 05:11:06,920:SACCADE:INFO::#SCS:Order placed at @2021-01-04 07:01:00.380685
+2023-10-23 05:11:06,928:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:14; price:272.130; quantity:1
+2023-10-23 05:11:06,928:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:01:00.380685 SCS_PNLENGINE 272.130 1 #Trade:SCS @( 272.130, 1, 2021-01-04 07:01:00.380685 )
+2023-10-23 05:11:06,929:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:5.760, ClosedPnl:0
+2023-10-23 05:11:06,931:SACCADE:INFO::This order got finished: #Order(2, 14)
+2023-10-23 05:11:19,501:SACCADE:INFO::Try to get a Buy @:#OrderBookStatus: eventTime:2021-01-04 07:01:10.761783; instrumentId:2; bestBid:272.38; bestBidQuantity:2; bestAsk:272.400; bestAskQuantity:-3
+2023-10-23 05:11:19,502:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:01:10.761783; instrumentId:2; bestBid:272.38; bestBidQuantity:2; bestAsk:272.400; bestAskQuantity:-3
+2023-10-23 05:11:19,503:SACCADE:INFO::Entered RMS to check! InstId:2 Qty:1
+2023-10-23 05:11:19,504:SACCADE:INFO::Trade allowed by RMS:SCS
+2023-10-23 05:11:19,505:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:2; orderNumber:15; price:272.400; quantity:1
+2023-10-23 05:11:19,507:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:01:10.761783; instrumentId:2; bestBid:272.38; bestBidQuantity:2; bestAsk:272.400; bestAskQuantity:-3 #OrderNew: orderManagerId:2; orderNumber:15; price:272.400; quantity:1
+2023-10-23 05:11:19,509:SACCADE:INFO::Strategy processing exchange msg:SCS
+2023-10-23 05:11:19,522:SACCADE:INFO::OMS:2 Got ConfirmNew:#ConfirmNew: orderManagerId:2; orderNumber:15; eventTime:2021-01-04 07:01:10.761783
+2023-10-23 05:11:19,523:SACCADE:INFO::#SCS:Order placed at @2021-01-04 07:01:10.761783
+2023-10-23 05:11:19,532:SACCADE:INFO::OMS:2 Got Fill:#Fill: orderManagerId:2; orderNumber:15; price:272.400; quantity:1
+2023-10-23 05:11:19,532:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:01:10.761783 SCS_PNLENGINE 272.400 1 #Trade:SCS @( 272.400, 1, 2021-01-04 07:01:10.761783 )
+2023-10-23 05:11:19,533:SACCADE:INFO::SCS_PNLENGINE: OpenPnl:9.540, ClosedPnl:0
+2023-10-23 05:11:19,535:SACCADE:INFO::This order got finished: #Order(2, 15)
+2023-10-23 05:11:40,512:SACCADE:INFO::Try to get a Sell @:#OrderBookStatus: eventTime:2021-01-04 07:01:40.818519; instrumentId:1; bestBid:106.67; bestBidQuantity:10; bestAsk:106.68; bestAskQuantity:-1
+2023-10-23 05:11:40,513:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:01:40.818519; instrumentId:1; bestBid:106.67; bestBidQuantity:10; bestAsk:106.68; bestAskQuantity:-1
+2023-10-23 05:11:40,514:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:-1
+2023-10-23 05:11:40,515:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:11:40,516:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:18; price:106.67; quantity:-1
+2023-10-23 05:11:40,517:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:01:40.818519; instrumentId:1; bestBid:106.67; bestBidQuantity:10; bestAsk:106.68; bestAskQuantity:-1 #OrderNew: orderManagerId:1; orderNumber:18; price:106.67; quantity:-1
+2023-10-23 05:11:40,519:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:11:40,530:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:18; eventTime:2021-01-04 07:01:40.818519
+2023-10-23 05:11:40,531:SACCADE:INFO::#SCH:Order placed at @2021-01-04 07:01:40.818519
+2023-10-23 05:11:40,539:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:18; price:106.67; quantity:-1
+2023-10-23 05:11:40,539:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:01:40.818519 SCH_PNLENGINE 106.67 -1 #Trade:SCH @( 106.67, -1, 2021-01-04 07:01:40.818519 )
+2023-10-23 05:11:40,540:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-1.18, ClosedPnl:0
+2023-10-23 05:11:40,542:SACCADE:INFO::This order got finished: #Order(1, 18)
+2023-10-23 05:11:47,067:SACCADE:INFO::Try to get a Sell @:#OrderBookStatus: eventTime:2021-01-04 07:01:51.842856; instrumentId:1; bestBid:106.65; bestBidQuantity:8; bestAsk:106.66; bestAskQuantity:-3
+2023-10-23 05:11:47,068:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:01:51.842856; instrumentId:1; bestBid:106.65; bestBidQuantity:8; bestAsk:106.66; bestAskQuantity:-3
+2023-10-23 05:11:47,069:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:-1
+2023-10-23 05:11:47,070:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:11:47,071:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:19; price:106.65; quantity:-1
+2023-10-23 05:11:47,072:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:01:51.842856; instrumentId:1; bestBid:106.65; bestBidQuantity:8; bestAsk:106.66; bestAskQuantity:-3 #OrderNew: orderManagerId:1; orderNumber:19; price:106.65; quantity:-1
+2023-10-23 05:11:47,073:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:11:47,088:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:19; eventTime:2021-01-04 07:01:51.842856
+2023-10-23 05:11:47,088:SACCADE:INFO::#SCH:Order placed at @2021-01-04 07:01:51.842856
+2023-10-23 05:11:47,097:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:19; price:106.65; quantity:-1
+2023-10-23 05:11:47,097:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:01:51.842856 SCH_PNLENGINE 106.65 -1 #Trade:SCH @( 106.65, -1, 2021-01-04 07:01:51.842856 )
+2023-10-23 05:11:47,098:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-1.42, ClosedPnl:0
+2023-10-23 05:11:47,099:SACCADE:INFO::This order got finished: #Order(1, 19)
+2023-10-23 05:11:54,527:SACCADE:INFO::Try to get a Sell @:#OrderBookStatus: eventTime:2021-01-04 07:02:02.098846; instrumentId:1; bestBid:106.62; bestBidQuantity:7; bestAsk:106.63; bestAskQuantity:-1
+2023-10-23 05:11:54,528:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:02:02.098846; instrumentId:1; bestBid:106.62; bestBidQuantity:7; bestAsk:106.63; bestAskQuantity:-1
+2023-10-23 05:11:54,529:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:-1
+2023-10-23 05:11:54,529:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:11:54,529:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:20; price:106.62; quantity:-1
+2023-10-23 05:11:54,530:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:02:02.098846; instrumentId:1; bestBid:106.62; bestBidQuantity:7; bestAsk:106.63; bestAskQuantity:-1 #OrderNew: orderManagerId:1; orderNumber:20; price:106.62; quantity:-1
+2023-10-23 05:11:54,532:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:11:54,544:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:20; eventTime:2021-01-04 07:02:02.098846
+2023-10-23 05:11:54,545:SACCADE:INFO::#SCH:Order placed at @2021-01-04 07:02:02.098846
+2023-10-23 05:11:54,553:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:20; price:106.62; quantity:-1
+2023-10-23 05:11:54,553:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:02:02.098846 SCH_PNLENGINE 106.62 -1 #Trade:SCH @( 106.62, -1, 2021-01-04 07:02:02.098846 )
+2023-10-23 05:11:54,554:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-1.75, ClosedPnl:0
+2023-10-23 05:11:54,556:SACCADE:INFO::This order got finished: #Order(1, 20)
+2023-10-23 05:12:00,341:SACCADE:INFO::Try to get a Sell @:#OrderBookStatus: eventTime:2021-01-04 07:02:12.384688; instrumentId:1; bestBid:106.59; bestBidQuantity:7; bestAsk:106.61; bestAskQuantity:-9
+2023-10-23 05:12:00,342:SACCADE:INFO::Strategy sending new order at:#OrderBookStatus: eventTime:2021-01-04 07:02:12.384688; instrumentId:1; bestBid:106.59; bestBidQuantity:7; bestAsk:106.61; bestAskQuantity:-9
+2023-10-23 05:12:00,343:SACCADE:INFO::Entered RMS to check! InstId:1 Qty:-1
+2023-10-23 05:12:00,344:SACCADE:INFO::Trade allowed by RMS:SCH
+2023-10-23 05:12:00,345:SACCADE:INFO::Executing Order New:OrderToAdaptMsg.OrderNew #OrderNew: orderManagerId:1; orderNumber:21; price:106.59; quantity:-1
+2023-10-23 05:12:00,346:SACCADE:INFO::Dispatching Order to exchange:#OrderBookStatus: eventTime:2021-01-04 07:02:12.384688; instrumentId:1; bestBid:106.59; bestBidQuantity:7; bestAsk:106.61; bestAskQuantity:-9 #OrderNew: orderManagerId:1; orderNumber:21; price:106.59; quantity:-1
+2023-10-23 05:12:00,347:SACCADE:INFO::Strategy processing exchange msg:SCH
+2023-10-23 05:12:00,360:SACCADE:INFO::OMS:1 Got ConfirmNew:#ConfirmNew: orderManagerId:1; orderNumber:21; eventTime:2021-01-04 07:02:12.384688
+2023-10-23 05:12:00,361:SACCADE:INFO::#SCH:Order placed at @2021-01-04 07:02:12.384688
+2023-10-23 05:12:00,366:SACCADE:INFO::OMS:1 Got Fill:#Fill: orderManagerId:1; orderNumber:21; price:106.59; quantity:-1
+2023-10-23 05:12:00,369:SACCADE:INFO::#PNL_TRADE: 2021-01-04 07:02:12.384688 SCH_PNLENGINE 106.59 -1 #Trade:SCH @( 106.59, -1, 2021-01-04 07:02:12.384688 )
+2023-10-23 05:12:00,370:SACCADE:INFO::SCH_PNLENGINE: OpenPnl:-2.05, ClosedPnl:0
+2023-10-23 05:12:00,371:SACCADE:INFO::This order got finished: #Order(1, 21)
